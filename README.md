@@ -98,7 +98,7 @@ buffer = "A" * <OFFSET BYTES> + "B" * 4
 
 #### Find bad characters
 1. Get a list of bad characters from https://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/ or https://github.com/cytopia/badchars
-2. Edit the script, change the buffer to send the bad characters
+2. Edit the script. Add an badchars variable and change the buffer to send the bad characters
 
 ```
 badchars = (
