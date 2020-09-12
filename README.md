@@ -71,7 +71,10 @@ while True:
 
 ```/usr/share/Metasploit-framework/tools/exploit/pattern_create.rb -l <length>```
 
-```!mona pc <length>```
+```
+!mona config -set workingfolder C:\ImmunityLogs\%p
+!mona pc <length>
+```
 
 2.	Edit the script to add the offset pattern.
 
