@@ -72,15 +72,15 @@ while True:
 
 ```!mona pc <length>```
 
-2.	Edit the script to send the offset pattern.
+2.	Edit the script to add the offset pattern.
 
 ```
 offset = "<OFFSET PATTERN>"
 
 buffer = offset
 ```
-3.	Send the offset pattern and get the EIP value out of the debugger.
-4. Get the offset location.
+3.	Send the offset pattern and get the EIP value out of the Immunity Debugger.
+4. Get the amount of offset bytes.
 
 ```/usr/share/Metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
 
