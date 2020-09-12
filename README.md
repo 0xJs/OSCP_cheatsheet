@@ -7,8 +7,8 @@
    * [Tips & Tricks](#Tips_&_Tricks)
    * [Discovery](#Discovery)
    * [Services](#Services)
-      * [Most common services](#most_common_ports:)
-      * [Port scanning: Nmap](#Port_scanning:_Nmap)
+      * [Most common services](#most_common_ports)
+      * [Port scanning: Nmap](#Port_scanning_Nmap)
       * [Tips & Tricks](#Tips_&_Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
@@ -235,7 +235,7 @@ sudo netdisover -i <INTERFACE>
 ```
 
 ## Services
-### Most common ports:
+### Most common ports
     21: ftp
     22: ssh
     23: telnet
@@ -257,7 +257,7 @@ sudo netdisover -i <INTERFACE>
     5900: vnc
     8080: http-proxy
 
-### Port scanning: Nmap
+### Port scanning Nmap
 Nmap is used for port scanning.
 #### Full TCP port scan
 ```
