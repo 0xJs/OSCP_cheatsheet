@@ -4,12 +4,12 @@
 * [General](#General)
 * [Buffer Overflow](#Buffer_Overflow)
 * [Enumeration](#Enumeration)
-   * [Tips & Tricks](#Tips_&_Tricks)
+   * [Tips & Tricks](#Tips_and_Tricks)
    * [Discovery](#Discovery)
    * [Services](#Services)
         * [Most common ports](#Most-common-ports)
         * [Port Scanning Nmap](#port-scanning-Nmap)
-        * [Tips & Tricks](#Tips-&-Tricks)
+        * [Tips & Tricks](#Tips-and-Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
@@ -219,7 +219,7 @@ buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 ```
  
 # Enumeration
-## Tips & Tricks
+## Tips and Tricks
 
 
 ## Host Discovery
@@ -276,7 +276,7 @@ nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET>
 -Pn No ping #use if host says down but you know its up)
 -sn No port scan #use if you just want to scan a range to check if hosts are up.
 ```
-### Tips & Tricks
+### Tips and Tricks
 #### HTTP Openproxy
 If there is an open HTTP proxy, connect to it by configuring a proxy in your browser.
 
