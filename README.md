@@ -7,6 +7,9 @@
    * [Tips & Tricks](#Tips_&_Tricks)
    * [Discovery](#Discovery)
    * [Services](#Services)
+      * [Most common services](#most_common_ports:)
+      * [Port scanning: Nmap](#Port_scanning:_Nmap)
+      * [Tips & Tricks](#Tips_&_Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
@@ -271,11 +274,9 @@ nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET>
 -Pn No ping #use if host says down but you know its up)
 -sn No port scan #use if you just want to scan a range to check if hosts are up.
 ```
-
-#### FTP
-
-#### Openproxy
-If there is an open proxy, connect to it by configuring a proxy in your browser.
+### Tips & Tricks
+#### HTTP Openproxy
+If there is an open HTTP proxy, connect to it by configuring a proxy in your browser.
 
 ## Web-applications
 ### Tool Nikto
