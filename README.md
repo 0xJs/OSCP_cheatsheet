@@ -8,7 +8,7 @@
    * [Discovery](#Discovery)
    * [Services](#Services)
       * [Most common services](#most_common_ports)
-      * [Port scanning: Nmap](#Port_scanning_Nmap)
+      * [Port scanning Nmap](#Port_scanning_Nmap)
       * [Tips & Tricks](#Tips_&_Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
