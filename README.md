@@ -336,5 +336,10 @@ hydra -L <USERNAMEFILE> -P <PASSWORDFILE> <IP> http-post-form "<LOGINPAGE>:<USER
 ### Windows
 
 ### Linux
+#### Run SUID BIT
+```
+# Use the following instead of just sudo <PROGRAM>
+sudo -u root <PATH TO PROGRAM>
+```
  
 ## Lateral movement
