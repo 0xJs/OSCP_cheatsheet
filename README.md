@@ -12,6 +12,10 @@
     * [Lateral Movement](#Lateral-Movement)
     
 # General
+#### COMMANDO EXAMPLE
+```
+<COMMANDO>
+```
  
 # Buffer overflow
  
