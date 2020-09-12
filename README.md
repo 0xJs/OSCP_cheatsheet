@@ -7,7 +7,7 @@
    * [Tips & Tricks](#Tips_&_Tricks)
    * [Discovery](#Discovery)
    * [Services](#Services)
-         * [Windows](#Windows)
+        * [Windows](#Windows)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
