@@ -248,7 +248,12 @@ If there is an open proxy, connect to it by configuring a proxy in your browser.
 ### Dirb
 
 ### General
-
+#### Find dangerous HTTP methods
+https://www.sans.org/reading-room/whitepapers/testing/penetration-testing-web-application-dangerous-http-methods-33945
+```
+curl -v -X OPTIONS http://website/directory
+#HTTP options such as PUT, Delete are bad
+```
 
 # Exploitation
  
