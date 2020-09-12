@@ -219,7 +219,7 @@ buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 ## Tips & Tricks
 
 
-## Discovery
+## Host Discovery
 #### NMAP ping sweep
 ```
 sudo nmap -sn <RANGE>
@@ -254,7 +254,8 @@ sudo netdisover -i <INTERFACE>
     5900: vnc
     8080: http-proxy
 
-### Nmap
+### Port scanning: Nmap
+Nmap is used for port scanning.
 #### Full TCP port scan
 ```
 nmap <TARGET> -sV -sC -p- -vv -oA full_tcp_-<TARGET> 
@@ -277,12 +278,12 @@ nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET>
 If there is an open proxy, connect to it by configuring a proxy in your browser.
 
 ## Web-applications
-### Nikto
+### Tool Nikto
 ```
 nikto -host <URL> 
 ```
 
-### Directory fuzzing
+### Tools Directory fuzzing
 ```
 dirb 
 ```
