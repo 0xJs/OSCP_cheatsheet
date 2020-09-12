@@ -315,6 +315,7 @@ curl -v -X OPTIONS http://website/directory
 # Exploitation
 ## Tips and Tricks
 ## FTP
+- Check if login is allowed as anonymous:anonymous.
 
 ## Credential bruteforcing
 #### Hydra FTP
