@@ -32,7 +32,13 @@ Make sure you got immunity debugger + mona.py installed
 #### Spiking
 1. Take the commands/options/parameters one at a time and send a bunch of data to see if it crashes
 2. Use `generic_send_tcp <HOST> <PORT> <SPIKE SCRIPT> 0 0` to send a spike script
-   Spike script: see trunk/stats.spk for an example
+```
+#EXAMPLE SPIKE SCRIPT
+s_readline();
+s_string("TRUN ");
+s_string_variable("0");
+```
+
 #### Fuzzing
 1. Get the amount of bytes it crashes the program, the following fuzzing script could be used:
 
