@@ -66,7 +66,8 @@ while True:
 ```
 
 #### Find the offset
-1.	Create a offset pattern.
+1.	Create a offset pattern with the amount of bytes the program crashed.
+   Use a couple more tho!
 
 ```/usr/share/Metasploit-framework/tools/exploit/pattern_create.rb -l <length>```
 
