@@ -4,6 +4,7 @@
 * [General](#General)
 * [Buffer Overflow](#Buffer_Overflow)
 * [Enumeration](#Enumeration)
+   * [Tips & Tricks](#Tips_&_Tricks)
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
     * [Local privilege escalation](#Local-privilege-escalation)
@@ -12,7 +13,13 @@
     * [Lateral Movement](#Lateral-Movement)
     
 # General
-#### COMMANDO EXAMPLE
+#### Python error
+When receiving the error “/usr/bin/env: ‘python\r’: No such file or directory when running an python exploit.
+1.	Open the python file in vim
+2.	Use the command “:set ff=unix”
+3.	Save the file. “:wq”
+
+#### EXAMPLE COMMANDO
 ```
 <COMMANDO>
 ```
@@ -206,7 +213,33 @@ buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 ```
  
 # Enumeration
- 
+## Tips & Tricks
+
+## Discovery
+
+## Services
+### Nmap
+#### Full TCP port scan
+```
+nmap <TARGET> -sV -sC -p- -vv -oA full_tcp_-<TARGET> 
+```
+
+#### Full UDP port scan
+```
+nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET> 
+```
+
+#### Usefull flags
+```
+-Pn No ping #use if host says down but you know its up)
+-sn No port scan #use if you just want to scan a range to check if hosts are up.
+```
+
+## Web-applications
+### Nikto
+
+### Dirb
+
 # Exploitation
  
 # Post Exploitation
