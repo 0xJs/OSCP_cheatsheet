@@ -2,9 +2,9 @@
 
 # Summary
 * [General](#General)
-* [Buffer Overflow](#Buffer_Overflow)
+* [Buffer Overflow](#Buffer-Overflow)
 * [Enumeration](#Enumeration)
-   * [Tips & Tricks](#Tips_and_Tricks)
+   * [Enumeration Tips](#Enumeration-tips)
    * [Discovery](#Discovery)
    * [Services](#Services)
         * [Most common ports](#Most-common-ports)
@@ -12,11 +12,9 @@
         * [Tips & Tricks](#Tips-and-Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
-   * [Tips & Tricks](#Tips_and_Tricks)
    * [FTP](#FTP)
    * [Credential bruteforcing](#Credential-bruteforcing)
-* [Post_Exploitation](#Post_Exploitation)
-   * [Tips & Tricks](#Tips_and_Tricks)
+* [Post_Exploitation](#Post-Exploitation)
    * [Local privilege escalation](#Local-privilege-escalation)
         * [Windows](#Windows)
         * [Linux](#Linux)
@@ -223,9 +221,6 @@ buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 ```
  
 # Enumeration
-## Tips and Tricks
-
-
 ## Host Discovery
 #### NMAP ping sweep
 ```
@@ -280,7 +275,7 @@ nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET>
 -Pn No ping #use if host says down but you know its up)
 -sn No port scan #use if you just want to scan a range to check if hosts are up.
 ```
-### Tips and Tricks
+### Enumeration Tips
 #### HTTP Openproxy
 If there is an open HTTP proxy, connect to it by configuring a proxy in your browser.
 
@@ -313,7 +308,6 @@ curl -v -X OPTIONS http://website/directory
 ```
 
 # Exploitation
-## Tips and Tricks
 ## FTP
 - Check if login is allowed as anonymous:anonymous.
 
@@ -338,7 +332,6 @@ hydra -L <USERNAMEFILE> -P <PASSWORDFILE> <IP> http-post-form "<LOGINPAGE>:<USER
 ```
 
 # Post Exploitation
-## Tips and Tricks
 ## Local privilege escalation
 ### Windows
 
