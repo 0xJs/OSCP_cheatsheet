@@ -94,7 +94,7 @@ buffer = offset
 buffer = "A" * <OFFSET BYTES> + "B" * 4
 ```
 
-2. Execute the script and check if the EIP is overwritten with B's (42424242)
+2. Execute the script and check if the EIP is overwritten with 4 B's (42424242)
 
 #### Find bad characters
 1. Get a list of bad characters
