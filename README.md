@@ -27,7 +27,9 @@ To find and exploit a buffer overflow the following steps should be executed:
    6. **Finding the right module:** Look for a ddl without memory protections
    7. **Generating shellcode:** To get a reverse shell or to run calc
    
-Make sure you got immunity debugger + mona.py installed (https://www.immunityinc.com/products/debugger/ and https://github.com/corelan/mona)
+Make sure you got immunity debugger + mona.py installed
+https://www.immunityinc.com/products/debugger/
+https://github.com/corelan/mona
    
 #### Spiking
 1. Take the commands/options/parameters one at a time and send a bunch of data to see if it crashes
