@@ -7,7 +7,7 @@
    * [Tips & Tricks](#Tips_&_Tricks)
    * [Discovery](#Discovery)
    * [Services](#Services)
-        * [Windows](#Windows)
+        * [Most common ports](#Most_common_ports)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
@@ -233,7 +233,6 @@ sudo netdisover -i <INTERFACE>
 ```
 
 ## Services
-### Most common ports
 ### Most common ports
     21: ftp
     22: ssh
