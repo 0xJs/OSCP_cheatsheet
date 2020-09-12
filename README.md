@@ -28,7 +28,9 @@ To find and exploit a buffer overflow the following steps should be executed:
    7. **Generating shellcode:** To get a reverse shell or to run calc
    
 Make sure you got immunity debugger + mona.py installed
+
 https://www.immunityinc.com/products/debugger/
+
 https://github.com/corelan/mona
    
 #### Spiking
