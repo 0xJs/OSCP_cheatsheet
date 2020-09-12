@@ -19,13 +19,13 @@
  
 # Buffer overflow
 To find and exploit a buffer overflow the following steps should be executed:
-   **1. Spiking:** Find the vulnerable parameter
-   **2. Fuzzing:** Get the amount of bytes the program crashes
-   **3. Find the offset:** Get the amount of bytes to write to the EIP
-   **4. Overwriting the EIP**
-   **5. Find bad characters:** Run all hex characters through the program
-   **6. Finding the right module:** Look for a ddl without memory protections
-   **7. Generating shellcode:** To get a reverse shell or to run calc
+   1. **Spiking:** Find the vulnerable parameter
+   2. **Fuzzing:** Get the amount of bytes the program crashes
+   3. **Find the offset:** Get the amount of bytes to write to the EIP
+   4. **Overwriting the EIP**
+   5. ****Find bad characters:** Run all hex characters through the program
+   6. **Finding the right module:** Look for a ddl without memory protections
+   7. **Generating shellcode:** To get a reverse shell or to run calc
    
 Make sure you got immunity debugger + mona.py installed
    
