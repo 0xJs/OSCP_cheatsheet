@@ -5,6 +5,9 @@
 * [Buffer Overflow](#Buffer_Overflow)
 * [Enumeration](#Enumeration)
    * [Tips & Tricks](#Tips_&_Tricks)
+   * [Discovery](#Discovery)
+   * [Services](#Services)
+   * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
     * [Local privilege escalation](#Local-privilege-escalation)
@@ -215,6 +218,7 @@ buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 # Enumeration
 ## Tips & Tricks
 
+
 ## Discovery
 
 ## Services
@@ -229,6 +233,9 @@ nmap <TARGET> -sV -sC -p- -vv -oA full_tcp_-<TARGET>
 nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET> 
 ```
 
+#### Openproxy
+If there is an open proxy, connect to it by configuring a proxy in your browser.
+
 #### Usefull flags
 ```
 -Pn No ping #use if host says down but you know its up)
@@ -239,6 +246,9 @@ nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET>
 ### Nikto
 
 ### Dirb
+
+### General
+
 
 # Exploitation
  
