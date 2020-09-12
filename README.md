@@ -7,18 +7,23 @@
 * [Exploitation](#Exploitation)
 * [Post_Exploitation](#Post_Exploitation)
     * [Local privilege escalation](#Local-privilege-escalation)
+         * [Windows](#Windows)
+         * [Linux](#Linux)
     * [Lateral Movement](#Lateral-Movement)
     
- # General
+# General
  
- # Buffer overflow
+# Buffer overflow
  
- # Enumeration
+# Enumeration
  
- # Exploitation
+# Exploitation
  
- # Post Exploitation
+# Post Exploitation
  
- ## Local privileg escalation
+## Local privilege escalation
+### Windows
+
+### Linux
  
- ## Lateral movement
+## Lateral movement
