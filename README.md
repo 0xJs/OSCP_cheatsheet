@@ -279,13 +279,22 @@ If there is an open proxy, connect to it by configuring a proxy in your browser.
 
 ## Web-applications
 ### Tool Nikto
+Nikto is used for vulnerability scanning a web application.
 ```
-nikto -host <URL> 
+nikto -host <URL> -output nikto-URL.txt
 ```
 
 ### Tools Directory fuzzing
+Directory fuzzing is used to fuzz directories on a website.
+#### Tool Dirb
 ```
-dirb 
+dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
+```
+
+#### Usefull flags Dirb
+```
+-p set op a proxy <IP:PORT>
+-X Append each word with this extensions.
 ```
 
 ### General
@@ -299,7 +308,6 @@ curl -v -X OPTIONS http://website/directory
 # Exploitation
  
 # Post Exploitation
- 
 ## Local privilege escalation
 ### Windows
 
