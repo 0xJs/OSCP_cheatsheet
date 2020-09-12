@@ -12,11 +12,15 @@
         * [Tips & Tricks](#Tips-and-Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
+   * [Tips & Tricks](#Tips_and_Tricks)
+   * [FTP](#FTP)
+   * [Credential bruteforcing](#Credential-bruteforcing)
 * [Post_Exploitation](#Post_Exploitation)
-    * [Local privilege escalation](#Local-privilege-escalation)
-         * [Windows](#Windows)
-         * [Linux](#Linux)
-    * [Lateral Movement](#Lateral-Movement)
+   * [Tips & Tricks](#Tips_and_Tricks)
+   * [Local privilege escalation](#Local-privilege-escalation)
+        * [Windows](#Windows)
+        * [Linux](#Linux)
+   * [Lateral Movement](#Lateral-Movement)
     
 # General
 #### Python error
@@ -309,8 +313,28 @@ curl -v -X OPTIONS http://website/directory
 ```
 
 # Exploitation
- 
+## Tips and Tricks
+## FTP
+
+## Credential bruteforcing
+#### Hydra FTP
+```
+hydra -L <USERNAMELIST> -P <PASSWORDLIST> -t 24 ftp://<IP>:<PORT>
+```
+
+#### Hydra SSH
+```
+hydra -L <USERNAMELIST> -P <PASSWORDLIST> -t 24 ssh://<IP>:<PORT>
+```
+
+#### Hydra HTTP login
+https://redteamtutorials.com/2018/10/25/hydra-brute-force-https/
+```
+
+```
+
 # Post Exploitation
+## Tips and Tricks
 ## Local privilege escalation
 ### Windows
 
