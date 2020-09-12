@@ -220,6 +220,16 @@ buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 
 
 ## Discovery
+#### NMAP ping sweep
+```
+sudo nmap -sn <RANGE>
+```
+
+#### Netdiscover
+```
+sudo netdiscover -r <RANGE>
+sudo netdisover -i <INTERFACE>
+```
 
 ## Services
 ### Nmap
@@ -244,8 +254,14 @@ If there is an open proxy, connect to it by configuring a proxy in your browser.
 
 ## Web-applications
 ### Nikto
+```
+nikto -host <URL> 
+```
 
-### Dirb
+### Directory fuzzing
+```
+dirb 
+```
 
 ### General
 #### Find dangerous HTTP methods
