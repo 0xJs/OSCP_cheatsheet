@@ -81,7 +81,9 @@ buffer = offset
 ```
 3.	Send the offset pattern and get the EIP value out of the debugger.
 4. Get the offset location.
+
 ```/usr/share/Metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
+
 ```!mona po <EIP VALUE>```
 
 #### Overwriting the EIP
