@@ -39,7 +39,7 @@ sudo chmod 600 <FILE>
 
 ## Powershell
 #### Powershell flags
-- ```-nop```: (-noprofile) which instructs powershell not to load the powershell user profile.
+- ```-nop```: (```-noprofile```) which instructs powershell not to load the powershell user profile.
 -	```-w hidden```: to avoid creating a window on the user’s desktop
 -	```-e```: (```-EncodedCommand```) use base64 encoding
 
