@@ -28,8 +28,8 @@
 #### Python error
 When receiving the error “/usr/bin/env: ‘python\r’: No such file or directory when running an python exploit.
 1.	Open the python file in vim
-2.	Use the command “:set ff=unix”
-3.	Save the file. “:wq”
+2.	Use the command ```:set ff=unix```
+3.	Save the file. ```:wq```
 
 #### SSH key files
 ssh key files needs to be permission 600
