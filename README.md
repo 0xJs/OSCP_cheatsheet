@@ -32,8 +32,9 @@ When receiving the error “/usr/bin/env: ‘python\r’: No such file or direct
 3.	Save the file. “:wq”
 
 #### SSH key files
-```
 ssh key files needs to be permission 600
+```
+sudo chmod 600 <FILE>
 ```
 
 ## Powershell
