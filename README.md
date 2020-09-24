@@ -14,7 +14,7 @@
 * [Exploitation](#Exploitation)
    * [FTP](#FTP)
    * [Credential bruteforcing](#Credential-bruteforcing)
-* [Post_Exploitation](#Post-Exploitation)
+* [Post Exploitation](#Post-Exploitation)
    * [Local privilege escalation](#Local-privilege-escalation)
         * [Windows](#Windows)
         * [Linux](#Linux)
