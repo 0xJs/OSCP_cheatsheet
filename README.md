@@ -350,7 +350,14 @@ Directory fuzzing is used to fuzz directories on a website.
 #### Tool Dirb
 Use the -R to disable recursive scanning
 ```
+dirb <URL> /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -o dirb-<URL>.txt
 dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
+```
+
+#### Tool Gobuster
+```
+gobuster dir -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u <URL> gobuster-<URL>.txt
+gobuster dir -w /opt/SecLists/Discovery/Web-Content/big.txt -u <URL> gobuster-<URL>.txt
 ```
 
 #### Usefull flags Dirb
@@ -377,6 +384,12 @@ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
 #### SMBClient list shares
 ```
 smbclient -L <IP>
+smbclient -L <IP>  -U '<USER>'%'<PASS>'
+```
+
+#### SMBClient connect to share
+```
+smbclient //<IP>/<SHARE>
 ```
 
 #### SMBClient connect to share
