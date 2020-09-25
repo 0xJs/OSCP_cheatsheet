@@ -379,6 +379,11 @@ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
 smbclient -L <IP>
 ```
 
+#### SMBClient connect to share
+```
+smbclient //<IP>/<SHARE>
+```
+
 #### Download smb files recursively
 ```
 smbget -R smb://<IP>/<SHARE>
