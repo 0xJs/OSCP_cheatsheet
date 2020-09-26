@@ -240,6 +240,7 @@ This command finds all "jmp esp" (or equivalent) instructions with addresses tha
 
 2. Go to step 6 below
 
+
 1. See all the module by executing `!mona modules` in the Immunity Debugger console.
 2. Check all the protection settings (Rebase, SafeSEN, ASLR, NXCompat, OS dll)
 3. Look for a vulnerable dll with all falses and write down the .dll
@@ -251,6 +252,7 @@ output = \xff\xe4
 ```
 
 5. Get the all the JMP ESP return adressess `!mona find -s "\xff\xe4" -m <.dll file>`
+
 6. Write down all the JMP ESP return adresses
 7. Choose an address and update your exploit.py script, setting the "retn" variable to the address and empty the "payload" variable.
 If program is 32 bit, write it backwards. (little endian). For example if the address is \x01\x02\x03\x04 in Immunity, write it as \x04\x03\x02\x01 in your exploit.
