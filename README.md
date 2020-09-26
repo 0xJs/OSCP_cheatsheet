@@ -134,9 +134,11 @@ for string in buffer:
 #### Find the offset
 First execute ```!mona config -set workingfolder c:\mona\%p```
 1.	Create a offset pattern with the amount of bytes +400 the program crashed.
+  
   a) With metasploit
 
 ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
+  
   b) With mona
 
 ```
