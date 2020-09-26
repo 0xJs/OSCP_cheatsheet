@@ -192,7 +192,10 @@ Check for output: EIP contains normal pattern : ... (offset XXXX)
 
 #### Find bad characters
 1. Get a list of bad characters from https://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/ or https://github.com/cytopia/badchars
-2. Edit the script and change the payload to send the bad characters and run the following in Immunity Debugger ```!mona bytearray -b "\x00```
+2. Edit the script and change the payload to send the bad characters and run the following in Immunity Debugger 
+```
+!mona bytearray -b "\x00
+```
 
 ```
 payload = (
