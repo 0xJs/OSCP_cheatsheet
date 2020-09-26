@@ -133,13 +133,13 @@ for string in buffer:
 
 #### Find the offset
 First execute ```!mona config -set workingfolder c:\mona\%p```
-1.	Create a offset pattern with the amount of bytes +400 the program crashed.
+1. Create a offset pattern with the amount of bytes +400 the program crashed.
   
-  a. With metasploit ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
+   a) With metasploit ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
   
-  b. With mona ```!mona pc <length>```
+   b) With mona ```!mona pc <length>```
 
-2.	Create a new script named exploit.py and set the offset pattern in the variable ```payload```
+2. Create a new script named exploit.py and set the offset pattern in the variable ```payload```
 
 ```
 import socket
