@@ -155,7 +155,7 @@ prefix = ""
 offset = 0
 overflow = "A" * offset
 retn = "BBBB"
-padding = "'\x90' * 16"
+padding = "\x90" * 16
 payload = ""
 postfix = ""
 
