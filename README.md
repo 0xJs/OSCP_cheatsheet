@@ -184,15 +184,10 @@ Check for output: EIP contains normal pattern : ... (offset XXXX)
 
 ```!mona po <EIP VALUE>```
 
-5. Update your exploit.py script and set the offset variable to this value (was previously set to 0). Set the payload variable to an empty string again. Set the retn variable to "BBBB".
+5. Update your exploit.py script and set the offset variable to this value (was previously set to 0). 
 
 #### Overwriting the EIP
-1. Edit the script, remove the offset variable. Then change the buffer to overwrite the buffer with 4 B's
-
-```
-buffer = "A" * <OFFSET BYTES> + "B" * 4
-```
-
+1. Set the payload variable to an empty string again. Set the retn variable to "BBBB".
 2. Execute the script and check if the EIP is overwritten with 4 B's (42424242)
 
 #### Find bad characters
