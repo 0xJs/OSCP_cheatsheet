@@ -240,6 +240,7 @@ This command finds all "jmp esp" (or equivalent) instructions with addresses tha
 
 2. Go to step 6 below
 
+or
 
 1. See all the module by executing `!mona modules` in the Immunity Debugger console.
 2. Check all the protection settings (Rebase, SafeSEN, ASLR, NXCompat, OS dll)
