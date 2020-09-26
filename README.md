@@ -184,7 +184,7 @@ except:
     Check for output: EIP contains normal pattern : ... (offset XXXX)
      ```
 
-   B) With Metasploit
+    B) With Metasploit
 
     ```
     /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>
