@@ -175,8 +175,8 @@ except:
 3.	Run the following in Mona and skip 4 (If it doesn't work do step 4 tho as a workaround)
 ```
 !mona findmsp -distance <LENGTH OF GENERATED STRING>
-#Check for output: EIP contains normal pattern : ... (offset XXXX)
 ```
+Check for output: EIP contains normal pattern : ... (offset XXXX)
 
 4. Get the amount of offset bytes.
 
