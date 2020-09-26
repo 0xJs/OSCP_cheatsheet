@@ -128,6 +128,8 @@ while True:
 
 ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
 
+or
+
 ```
 !mona config -set workingfolder C:\ImmunityLogs\%p
 !mona pc <length>
@@ -153,9 +155,14 @@ try:
 except:
     print "Error connecting to server"
     sys.exit()
-
 ```
-3.	Send the offset pattern and get the EIP value out of the Immunity Debugger.
+
+3.	Send the offset pattern and get the EIP value out of the Immunity Debugger OR Run the following and skip 4.
+```
+!mona findmsp -distance <LENGTH OF GENERATED STRING>
+#Check for output: EIP contains normal pattern : ... (offset XXXX)
+```
+
 4. Get the amount of offset bytes.
 
 ```/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l <length> -q <EIP VALUE>```
