@@ -135,9 +135,11 @@ for string in buffer:
 First execute ```!mona config -set workingfolder c:\mona\%p```
 1.	Create a offset pattern with the amount of bytes +400 the program crashed.
 
+  a. with metasploit
+
 ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
 
-or
+  b. or with mona
 
 ```
 !mona pc <length>
