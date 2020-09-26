@@ -253,7 +253,9 @@ output = \xff\xe4
 6. Write down all the JMP ESP return adresses
 7. Choose an address and update your exploit.py script, setting the "retn" variable to the address and empty the "payload" variable.
 If program is 32 bit, write it backwards. (little endian). For example if the address is \x01\x02\x03\x04 in Immunity, write it as \x04\x03\x02\x01 in your exploit.
-
+```
+retn = "\xaf\x11\x50\x62"
+```
 8. Click on the blue arrow in Immunity Debugger and enter the return adress, hit F2 to mark it blue and set a break point. Check the EIP value. If the EIP value == return/ESP adress we control the EIP
 
 #### Generating shellcode
