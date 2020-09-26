@@ -132,6 +132,7 @@ for string in buffer:
 ```
 
 #### Find the offset
+First execute ```!mona config -set workingfolder c:\mona\%p```
 1.	Create a offset pattern with the amount of bytes +400 the program crashed.
 
 ```/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <LENGTH>```
@@ -139,7 +140,6 @@ for string in buffer:
 or
 
 ```
-!mona config -set workingfolder c:\mona\%p
 !mona pc <length>
 ```
 
@@ -192,7 +192,6 @@ Or with metasploit
 1. Get a list of bad characters from https://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/ or https://github.com/cytopia/badchars
 2. Edit the script and change the payload to send the bad characters and run the following in Immunity Debugger 
 ```
-!mona config -set workingfolder c:\mona\%p
 !mona bytearray -b "\x00"
 ```
 
