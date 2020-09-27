@@ -146,7 +146,7 @@ First execute ```!mona config -set workingfolder c:\mona\%p```
    !mona pc <length>
    ```
 
-2. Create a new script named exploit.py and set the offset pattern in the variable "payload"
+2. Create a new script named ```exploit.py``` and set the offset pattern in the variable "payload"
 
 ```
 import socket
