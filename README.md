@@ -397,6 +397,7 @@ dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
 ```
 
 #### Tool Gobuster
+- use the ```-b``` flag to blacklist status codes.
 ```
 gobuster dir -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u <URL> gobuster-<URL>.txt
 gobuster dir -w /opt/SecLists/Discovery/Web-Content/big.txt -u <URL> gobuster-<URL>.txt
