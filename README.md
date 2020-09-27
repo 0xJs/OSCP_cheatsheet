@@ -97,7 +97,7 @@ s_string_variable("0");
 ```
 
 #### Fuzzing
-1. Get the amount of bytes it crashes the program, the following fuzzing script could be used:
+1. Get the amount of bytes it crashes the program, the following ```fuzzing.py``` script could be used:
 ```
 import socket, time, sys
 
