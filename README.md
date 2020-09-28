@@ -131,7 +131,7 @@ for string in buffer:
 2. Edit the variables "IP", "Port" and "Prefix"
 
 #### Find the offset
-First execute ```!mona config -set workingfolder c:\mona\%p```
+First execute ```!mona config -set workingfolder c:\mona\oscp```
 1. Create a offset pattern with the amount of bytes +400 the program crashed.
   
    a) With metasploit 
