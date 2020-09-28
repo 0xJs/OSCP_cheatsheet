@@ -536,6 +536,7 @@ nmap -sSUC -p111 <IP>
 #### Mount shares
 ```
 sudo mount -o nolock <IP>:/<SHARE> <MOUNT LOCATION>
+sudo mount -t cifs -o port=<PORT> //<IP>/<SHARE> -o username=<USERNAME>,password=<PASSWORD> /mnt/<FOLDER>
 ```
 
 #### Open file with no permission to file
