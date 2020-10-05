@@ -701,6 +701,21 @@ sudo busybox httpd -f -p <PORT>
 wget http://<IP>:<PORT>/<FILE>
 ```
 
+#### SMB Server
+```
+python smbserver.py <SHARE NAME> <PATH>
+```
+
+#### Look for files in SMB
+```
+net view \\<IP>\<SHARE NAME>
+```
+
+#### Copy files in SMB
+```
+net view \\<IP>\<SHARE NAME>\<FILE NAME>
+```
+
 #### Linux ftp
 ```
 If installed use the ftp package
