@@ -730,10 +730,8 @@ echo Dim http, varByteArray, strData, strBuffer, lngCounter, fs, ts >> wget.vbs
 echo Err.Clear >> wget.vbs
 echo Set http = Nothing >> wget.vbs
 echo Set http = CreateObject("WinHttp.WinHttpRequest.5.1") >> wget.vbs
-echo If http Is Nothing Then Set http = CreateObject("WinHttp.WinHttpRequest") >> wge
-t.vbs
-echo If http Is Nothing Then Set http = CreateObject("MSXML2.ServerXMLHTTP") >> wget.
-vbs
+echo If http Is Nothing Then Set http = CreateObject("WinHttp.WinHttpRequest") >> wget.vbs
+echo If http Is Nothing Then Set http = CreateObject("MSXML2.ServerXMLHTTP") >> wget.vbs
 echo If http Is Nothing Then Set http = CreateObject("Microsoft.XMLHTTP") >> wget.vbs
 echo http.Open "GET", strURL, False >> wget.vbs
 echo http.Send >> wget.vbs
