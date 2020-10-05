@@ -708,12 +708,12 @@ sudo python3 /opt/oscp/impacket/examples/smbserver.py <SHARE NAME> <PATH>
 
 #### Look for files in SMB
 ```
-net view \\<IP>\<SHARE NAME>
+dir \\<IP>\<SHARE NAME>
 ```
 
 #### Copy files in SMB
 ```
-net view \\<IP>\<SHARE NAME>\<FILE NAME>
+copy \\<IP>\<SHARE NAME>\<FILE NAME>
 ```
 
 #### Linux ftp
