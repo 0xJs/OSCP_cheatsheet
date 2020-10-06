@@ -175,6 +175,12 @@ nmap <TARGET> -p- --script vuln -vv -oA vulnscan_-<TARGET>
 #### HTTP Openproxy
 If there is an open HTTP proxy, connect to it by configuring a proxy in your browser.
 
+## Autorecon
+https://github.com/Tib3rius/AutoRecon
+```
+autorecon -vv <IP>
+```
+
 ## Web-applications
 - Check the file extensions in URL’s to see what the application is running (.net .aspx .php etc)
 - Inspect page content
