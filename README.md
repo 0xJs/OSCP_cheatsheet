@@ -188,6 +188,22 @@ curl <WEBPAGE>
 grep -o '[^/]*\.<DOMAIN>\.com' index.html | sort -u > subdomains.txt
 ```
 
+#### Screenshot a lot of http pages
+Collect screenshot from list of ips
+```
+for ip in $(cat <IP FILE>); do cutycapt --url=$ip --out=$ip.png;done
+```
+
+Run the following bash script
+```
+#!/bin/bash
+# Bash script to examine the scan results through HTML.
+echo "<HTML><BODY><BR>" > web.html
+ls -1 *.png | awk -F : '{ print $1":\n<BR><IMG SRC=\""$1""$2"\" width=600><BR>"}' >> w
+eb.html
+echo "</BODY></HTML>" >> web.html
+```
+
 ### Vulnerability scanning - Nikto
 Nikto is used for vulnerability scanning a web application.
 ```
