@@ -8,7 +8,6 @@
    * [Buffer overflow](bufferoverflow.md)
    * [Metasploit](metasploit.md)
 * [Enumeration](#Enumeration)
-   * [Enumeration Tips](#Enumeration-tips)
    * [Host Discovery](#Host-Discovery)
    * [Services](#Services)
         * [Most common ports](#Most-common-ports)
