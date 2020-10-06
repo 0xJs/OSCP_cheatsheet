@@ -519,6 +519,13 @@ perl: exec "/bin/sh";
 ruby: exec "/bin/sh"
 ```
 
+#### Enable tab completion
+1. In your active shell press ```bg``` to send your nc session to background
+2. Enter ```stty raw -echo```
+3. Enter ```fg``` to bring your nc session to foreground
+4. ```export TERM=xterm-256color``
+
+
 # Post Exploitation
 ## Local privilege escalation
 Exploit binaries
