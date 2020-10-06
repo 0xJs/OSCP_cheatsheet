@@ -655,8 +655,7 @@ cat etc/iptables/*
 
 #### Enumerate scheduled task
 ```
-ls -lah /etc/cron*
-cat /etc/crontab
+cat /etc/crontab; ls -lah /etc/cron*
 ```
 
 #### Installed applications and patch levels
