@@ -2,9 +2,9 @@
 
 
 # Summary
-* Seperate files
-   * [Buffer overflow](bufferoverflow.md)
-   * [Metasploit](metasploit.md)
+
+* [Buffer overflow](bufferoverflow.md)
+* [Metasploit](metasploit.md)
 * [General](#General)
 * [Enumeration](#Enumeration)
    * [Enumeration Tips](#Enumeration-tips)
