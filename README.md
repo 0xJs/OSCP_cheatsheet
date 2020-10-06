@@ -278,6 +278,13 @@ Check output
 nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
 ```
 
+#### Enum4linux
+Gotta try this: https://github.com/cddmp/enum4linux-ng
+```
+enum4linux <IP>
+```
+
+
 #### SMBClient list shares
 ```
 smbclient -L <IP>
