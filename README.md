@@ -216,24 +216,33 @@ nikto -host <URL> -output nikto-URL.txt
 ```
 
 ### Directory fuzzing
-#### Directory fuzzing - Dirb
-Use the -R to disable recursive scanning
-```
-dirb <URL> /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -o dirb-<URL>.txt
-dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
-```
-
-#### Directory fuzzing - Gobuster
-- use the ```-b``` flag to blacklist status codes.
-```
-gobuster dir -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u <URL> gobuster-<URL>.txt
-gobuster dir -w /opt/SecLists/Discovery/Web-Content/big.txt -u <URL> gobuster-<URL>.txt
-```
-
-#### Usefull flags Dirb
+#### Dirb parameters
+- ```-R``` to disable recursive scanning
 - ```-p``` set up a proxy <IP:PORT>
 - ```-X``` Append each word with this extensions.
 
+#### Dirb Quick scan
+```
+dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
+```
+
+#### Dirb Big wordlist
+```
+dirb <URL> /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -o dirb-<URL>.txt
+```
+
+#### Gobuster parameters
+- use the ```-b``` flag to blacklist status codes.
+
+#### Gobuster Quick scan
+```
+gobuster dir -w /opt/SecLists/Discovery/Web-Content/big.txt -u <URL> gobuster-<URL>.txt
+```
+
+#### Gobuster Big wordlist
+```
+gobuster dir -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u <URL> gobuster-<URL>.txt
+```
 
 ### Wordpress
 #### Scan Wordpress
