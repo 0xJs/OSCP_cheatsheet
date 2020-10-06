@@ -118,7 +118,7 @@ sudo netdiscover -r <RANGE>
 sudo netdisover -i <INTERFACE>
 ```
 
-## Services
+## Services / Port Scanning
 ### Most common ports
 ```
 21: ftp
@@ -144,7 +144,6 @@ sudo netdisover -i <INTERFACE>
 ```
 
 ### Port scanning Nmap
-Nmap is used for port scanning.
 #### Full TCP port scan
 ```
 nmap <TARGET> -sV -sC -O -p- -vv -oA full_tcp_-<TARGET> 
