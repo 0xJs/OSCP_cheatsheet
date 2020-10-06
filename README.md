@@ -4,7 +4,7 @@
 * [General](#General)
 * [Enumeration](#Enumeration)
    * [Enumeration Tips](#Enumeration-tips)
-   * [Discovery](#Discovery)
+   * [Discovery](#Host-Discovery)
    * [Services](#Services)
         * [Most common ports](#Most-common-ports)
         * [Port Scanning Nmap](#port-scanning-Nmap)
