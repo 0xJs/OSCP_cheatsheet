@@ -555,6 +555,8 @@ ruby: exec "/bin/sh"
 3. Enter ```fg``` to bring your nc session to foreground
 4. ```export TERM=xterm-256color``
 
+### MSFvenom payloads
+- https://github.com/frizb/MSF-Venom-Cheatsheet/blob/master/README.md
 
 ## File transfers
 ### Download files
