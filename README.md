@@ -1359,7 +1359,7 @@ https://github.com/rebootuser/LinEnum
 ./linEnum.sh -k password -e export -t
 ```
 
-## Manual checks linux
+## Manual Enumeration linux
 #### Check the current user
 ```
 whoami; id
