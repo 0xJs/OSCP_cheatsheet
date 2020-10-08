@@ -1,11 +1,4 @@
-# OSCP_cheatsheet
-This cheatsheet is made by for the OSCP exam.
-
-## Other great cheatsheets
-- https://github.com/CountablyInfinite/oscp_cheatsheet
-- https://github.com/frizb/MSF-Venom-Cheatsheet/blob/master/README.md
-
-# Summary
+# OSCP_cheatsheet summary
 * [General](#General)
    * [Buffer overflow](bufferoverflow.md)
    * [Metasploit](metasploit.md)
@@ -34,8 +27,11 @@ This cheatsheet is made by for the OSCP exam.
      * [Privilege escalation techniques](#Privilege-escalation-techniques-linux)
 * [Post Exploitation](#Post-Exploitation)
    * [Lateral Movement](#Lateral-Movement)
-    
+
 # General
+## Other great cheatsheets
+- https://github.com/CountablyInfinite/oscp_cheatsheet
+- https://github.com/frizb/MSF-Venom-Cheatsheet/blob/master/README.md
 #### Python error
 When receiving the error “/usr/bin/env: ‘python\r’: No such file or directory when running an python exploit.
 1.	Open the python file in vim
