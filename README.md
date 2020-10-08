@@ -1,6 +1,7 @@
 # OSCP_cheatsheet
 #### Other great cheatsheets
-https://github.com/CountablyInfinite/oscp_cheatsheet
+- https://github.com/CountablyInfinite/oscp_cheatsheet
+- https://github.com/frizb/MSF-Venom-Cheatsheet/blob/master/README.md
 
 
 # Summary
