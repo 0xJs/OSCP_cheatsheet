@@ -876,7 +876,7 @@ driverquery /v
 cd C:\Program Files\<DRIVER>
 ```
 
-## Privilege escalation techniques linux
+## Privilege escalation techniques windows
 Run winPEAS and if it find something fuzzy use these techniques to exploit it.
 
 ## Kernel exploits
