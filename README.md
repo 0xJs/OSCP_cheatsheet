@@ -897,7 +897,7 @@ Kernels are the core of any operating system. Think of it as a layer between app
 systeminfo > systeminfo.txt
 ```
 
-### Run on kali
+#### Run on kali
 ```
 python wes.py systeminfo.txt -i 'Elevation of privilege' --exploits-only
 ```
