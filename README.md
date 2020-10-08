@@ -1,8 +1,9 @@
 # OSCP_cheatsheet
-#### Other great cheatsheets
+This cheatsheet is made by for the OSCP exam.
+
+## Other great cheatsheets
 - https://github.com/CountablyInfinite/oscp_cheatsheet
 - https://github.com/frizb/MSF-Venom-Cheatsheet/blob/master/README.md
-
 
 # Summary
 * [General](#General)
