@@ -765,7 +765,7 @@ reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
 #### accesschk.exe
 AccessChk is an old but still trustworthy tool for checking user access control rights. You can use it to check whether a user or group has access to files, directories, services, and registry keys. The downside is more recent versions of the program spawn a GUI “accept EULA” popup window. When using the command line, we have to use an older version which still has an /accepteula command line option.
 
-## Manual Enumeration linux
+## Manual Enumeration windows
 #### Check the current user
 ```
 whoami
