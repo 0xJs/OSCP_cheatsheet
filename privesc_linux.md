@@ -6,6 +6,8 @@
 
 
 ## General tips
+- https://gtfobins.github.io/
+- https://github.com/andrew-d/static-binaries
 ### Easy ways to get root
 #### 1. Cat a new root user entry to /etc/passwd
 ```
