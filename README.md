@@ -3,7 +3,7 @@
    * [Buffer overflow](bufferoverflow.md)
    * [Metasploit](metasploit.md)
 * [Enumeration](enumeration.md)
-* [Exploitation](exploitation/md)
+* [Exploitation](exploitation.md)
 * [Privilege Escalation Windows](privesc_windows.md)
 * [Privilege Escalation Linux](privesc_linux.md)
 * [Post Exploitation](post_exploitation.md)
