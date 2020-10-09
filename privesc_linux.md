@@ -6,7 +6,7 @@
 
 
 ## General tips
-#### Easy ways to get root
+### Easy ways to get root
 #### 1. Cat a new root user entry to /etc/passwd
 ```
 openssl passwd <PASS> #generate password
