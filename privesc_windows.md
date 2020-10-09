@@ -1,4 +1,4 @@
-# Windows
+# Windows Privilege Escalation
 * [General tips](#General-tips)
 * [Tools](#Tools)
 * [Manual Enumeration](#Manual-Enumeration)
