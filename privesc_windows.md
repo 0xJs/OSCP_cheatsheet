@@ -1,9 +1,8 @@
 # Windows
-* [Windows](#Windows)
-  * [General tips](#General-tips)
-  * [Tools](#Tools)
-  * [Manual Enumeration](#Manual-Enumeration)
-  * [Privilege escalation techniques](#Privilege-escalation-techniques)
+* [General tips](#General-tips)
+* [Tools](#Tools)
+* [Manual Enumeration](#Manual-Enumeration)
+* [Privilege escalation techniques](#Privilege-escalation-techniques)
 
 ## General tips
 - Windows check if Windows Scheduler is running (```tasklist```)
