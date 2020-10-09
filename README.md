@@ -848,7 +848,7 @@ mount
 mountvol
 ```
 
-#### Device drivers and kernal modules
+#### Device drivers and kernel modules
 ```
 driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object ‘Display Name’, ‘Start Mode’, Path
 Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer | Where-Object {$_.DeviceName -like "*<DRIVER>*"}
@@ -886,10 +886,10 @@ Kernels are the core of any operating system. Think of it as a layer between app
 2. Find matching exploits (Google, ExploitDB, Github)
 3. Compile and run
 
-#### Finding kernal exploits
+#### Finding kernel exploits
 - https://github.com/bitsadmin/wesng
 - https://github.com/rasta-mouse/Watson
-- Pre compiled Kernal exploits
+- Pre compiled Kernel exploits
   - https://github.com/SecWiki/windows-kernel-exploits
   
 #### Get systeminfo
@@ -1455,6 +1455,7 @@ Kernels are the core of any operating system. Think of it as a layer between app
 
 1. Enumerate kernel versions ```(uname -a)```
 2. Find matching exploits
+   - https://github.com/jondonas/linux-exploit-suggester-2
 3. Compile and run
 
 ## Service exploits
