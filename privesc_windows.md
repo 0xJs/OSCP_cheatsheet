@@ -5,6 +5,7 @@
 * [Privilege escalation techniques](#Privilege-escalation-techniques)
 
 ## General tips
+- https://lolbas-project.github.io/
 - Windows check if Windows Scheduler is running (```tasklist```)
   - Go to C:\Program files (x65)\SystemScheduler\Events and check the logs to see if anything is running every x minutes.
   - Check if we got write permissions
