@@ -61,7 +61,7 @@ nmap <TARGET> --top-ports 25 -oA portsweep_top25-<TARGET>
 
 #### Nmap scan all vulnerabilities
 ```
-nmap <TARGET> -p- --script vuln -vv -oA vulnscan_-<TARGET> 
+nmap <TARGET> -p- --script vuln -vv -oA vulnscan_<TARGET> 
 ```
 
 #### Usefull flags
