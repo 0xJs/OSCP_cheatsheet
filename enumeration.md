@@ -45,18 +45,18 @@ sudo netdisover -i <INTERFACE>
 ### Port scanning Nmap
 #### Full TCP port scan
 ```
-nmap <TARGET> -sV -sC -O -p- -vv -oA full_tcp_-<TARGET> 
+nmap <TARGET> -sV -sC -O -p- -vv -oA fulltcp_<TARGET> 
 ```
 
 #### Full UDP port scan
 ```
-nmap <TARGET> -sU -sV -sC -p- -vv -oA full_udp_-<TARGET> 
+nmap <TARGET> -sU -sV -sC -p- -vv -oA fulludp_<TARGET> 
 ```
 
 #### Nmap scan most common ports wiht no host discovery
 ```
-nmap <TARGET> -p 20,21,22,25,80,443,111,135,139,443,8080 -oA portsweep-<TARGET> 
-nmap <TARGET> --top-ports 25 -oA portsweep_top25-<TARGET> 
+nmap <TARGET> -p 20,21,22,25,80,443,111,135,139,443,8080 -oA portsweep_<TARGET> 
+nmap <TARGET> --top-ports 25 -oA portsweep_top25_<TARGET> 
 ```
 
 #### Nmap scan all vulnerabilities
