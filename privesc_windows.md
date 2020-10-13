@@ -196,6 +196,12 @@ https://github.com/SecWiki/windows-kernel-exploits
 ## Service Exploits
 Services are simply programs that run in the background, accepting input or performing regular tasks. If services run with SYSTEM privileges and are misconfigured, exploiting them may lead to command execution with SYSTEM privileges as well.
 
+#### Check services access
+```
+accesschk.exe /accepteula -uwcqv <USER> * > ack.txt
+type ack.txt
+```
+
 #### Query the configuration of a service:
 ```
 sc.exe qc <SERVICE NAME>
