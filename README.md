@@ -92,3 +92,8 @@ sudo apt install mingw-64
 ```
 i686-w64-mingw32-gcc something.c -o something
 ```
+
+#### Compile 32 bit
+```
+gcc -Wall -o exploit X.c -Wl,--hash-style=both -m32
+```
