@@ -189,16 +189,10 @@ Gotta try this: https://github.com/cddmp/enum4linux-ng
 enum4linux <IP>
 ```
 
-
 #### SMBClient list shares
 ```
 smbclient -L <IP>
 smbclient -L <IP>  -U '<USER>'%'<PASS>'
-```
-
-#### SMBClient connect to share
-```
-smbclient //<IP>/<SHARE>
 ```
 
 #### SMBClient connect to share
@@ -211,6 +205,17 @@ smbclient //<IP>/<SHARE>
 get <FILE NAME>-
 smbget -R smb://<IP>/<SHARE>
 ```
+
+#### SMBMap check access
+```
+smbmap -H <IP> -p 445 -u ''
+```
+
+#### Nbtscan
+```
+nbtscan <IP>
+```
+
 
 ### Shares RPC
 #### Nmap enumerate RPC shares
