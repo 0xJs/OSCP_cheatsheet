@@ -31,7 +31,7 @@ ssh <USER>@<TARGET> -oKexAlgorithms=+diffie-hellman-group1-sha1
 
 #### RDP commands
 ```
-xfreerdp /d:<DOMAIN> /u:<USERNAME> /v:<TARGET IP< +clipboard
+xfreerdp /d:<DOMAIN> /u:<USERNAME> /v:<TARGET IP> +clipboard
 ```
 
 ## cmd
