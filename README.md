@@ -24,6 +24,11 @@ ssh key files needs to be permission 600
 sudo chmod 600 <FILE>
 ```
 
+#### SSH allow diffie helman
+```
+ssh <USER>@<TARGET> -oKexAlgorithms=+diffie-hellman-group1-sha1
+```
+
 #### RDP commands
 ```
 xfreerdp /d:<DOMAIN> /u:<USERNAME> /v:<TARGET IP< +clipboard
