@@ -34,7 +34,7 @@ ssh <USER>@<TARGET> -oKexAlgorithms=+diffie-hellman-group1-sha1
 xfreerdp /d:<DOMAIN> /u:<USERNAME> /v:<TARGET IP> +clipboard
 ```
 
-## cmd
+## CMD
 #### Find string
 ```
 | findstr /I “<FIND STRING>”
@@ -80,6 +80,13 @@ Get-ExecutionPolicy -Scope CurrentUser
 #### Disable execution policy
 ```
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+```
+
+#### Impacket PSexec impacket
+If no LM Hash use an empty one: ```aad3b435b51404eeaad3b435b51404ee```
+```
+python3 psexec.py -hashes <LMHASH>:<NTHASH> <DOMAIN>/<USERNAME>@<TARGET>
+python3 psexec.py <DOMAIN>/<USERNAME>:<PASSWORD>@<TARGET>
 ```
 
 ## Compiling
