@@ -182,20 +182,20 @@ https://book.hacktricks.xyz/pentesting/pentesting-smb
 
 #### Get version script
 ```
-#/bin/bash
-
-ip='<TARGET-IP-HERE>'
-shares=('C$' 'D$' 'ADMIN$' 'IPC$' 'PRINT$' 'FAX$' 'SYSVOL' 'NETLOGON')
-
-for share in ${shares[*]}; do
-    output=$(smbclient -U '%' -N \\\\$ip\\$share -c '') 
-
-    if [[ -z $output ]]; then 
-        echo "[+] creating a null session is possible for $share" # no output if command goes through, thus assuming that a session was created
-    else
-        echo $output # echo error message (e.g. NT_STATUS_ACCESS_DENIED or NT_STATUS_BAD_NETWORK_NAME)
-    fi
-done
+#!/bin/sh
+#Author: rewardone
+#Description:
+# Requires root or enough permissions to use tcpdump
+# Will listen for the first 7 packets of a null login
+# and grab the SMB Version
+#Notes:
+# Will sometimes not capture or will print multiple
+# lines. May need to run a second time for success.
+if [ -z $1 ]; then echo "Usage: ./smbver.sh RHOST {RPORT}" && exit; else rhost=$1; fi
+if [ ! -z $2 ]; then rport=$2; else rport=139; fi
+tcpdump -s0 -n -i tap0 src $rhost and port $rport -A -c 7 2>/dev/null | grep -i "samba\|s.a.m" | tr -d '.' | grep -oP 'UnixSamba.*[0-9a-z]' | tr -d '\n' & echo -n "$rhost: " &
+echo "exit" | smbclient -L $rhost 1>/dev/null 2>/dev/null
+echo "" && sleep .1
 ```
 
 #### Nmap enumerate SMB shares
