@@ -455,7 +455,11 @@ ls -l /.ssh
 ```
 
 ### NFS
-NFS (Network File System) is a popular distributed file system. NFS shares are configured in the /etc/exports file. Remote users can mount shares, access, create, modify files. By default, created files inherit the remote user’s id and group id (as owner and group respectively), even if they don’t exist on the NFS server.
+NFS (Network File System) is a popular distributed file system. NFS shares are configured in the ```/etc/exports``` file. Remote users can mount shares, access, create, modify files. By default, created files inherit the remote user’s id and group id (as owner and group respectively), even if they don’t exist on the NFS server.
+
+```
+cat /etc/exports
+```
 
 #### Show the NFS server's export list:
 ```
