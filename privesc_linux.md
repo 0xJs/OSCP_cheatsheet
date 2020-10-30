@@ -159,7 +159,7 @@ Services are simply programs that run in the background, accepting input or perf
 
 #### Find services running as root
 ```
-ps aux | grep "^root""
+ps aux | grep "^root"
 ````
 
 #### Find version of software
