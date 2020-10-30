@@ -12,6 +12,11 @@
 ## Other great cheatsheets
 - https://github.com/CountablyInfinite/oscp_cheatsheet
 - https://github.com/frizb/MSF-Venom-Cheatsheet/blob/master/README.md
+
+#### Static binaries
+- https://github.com/andrew-d/static-binaries
+- https://github.com/ernw/static-toolbox/releases
+
 #### Python error
 When receiving the error “/usr/bin/env: ‘python\r’: No such file or directory when running an python exploit.
 1.	Open the python file in vim
