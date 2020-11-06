@@ -107,12 +107,12 @@ sudo apt install mingw-64
 
 #### Compile 32bit Windows
 ```
-i686-w64-mingw32-gcc something.c -o something
+i686-w64-mingw32-gcc something.c -o something.exe
 ```
 
 #### Compile 64bit Windows
 ```
-x86_64-w64-mingw32-gcc
+x86_64-w64-mingw32-gcc something.c -o something.exe
 ```
 
 #### Compile 32 bit Linux
