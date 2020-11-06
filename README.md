@@ -105,12 +105,17 @@ gcc
 sudo apt install mingw-64
 ```
 
-#### Compile 32bit
+#### Compile 32bit Windows
 ```
 i686-w64-mingw32-gcc something.c -o something
 ```
 
-#### Compile 32 bit
+#### Compile 64bit Windows
+```
+x86_64-w64-mingw32-gcc
+```
+
+#### Compile 32 bit Linux
 ```
 gcc -Wall -o exploit X.c -Wl,--hash-style=both -m32
 ```
