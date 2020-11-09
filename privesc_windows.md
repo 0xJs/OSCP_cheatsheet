@@ -133,14 +133,6 @@ accesschk.exe -uws "Everyone" "C:\Program Files"
 Get-ChildItem "C:\Program Files" -Recurse | Get-ACL | ?{$_.AccessToString -match "Everyone\sAllow\s\sModify"}
 ```
 
-#### Unmounted disks
-```
-cat /etc/fstab
-mount
-/bin/lsblk
-mountvol
-```
-
 #### Device drivers and kernel modules
 ```
 driverquery.exe /v /fo csv | ConvertFrom-CSV | Select-Object ‘Display Name’, ‘Start Mode’, Path
