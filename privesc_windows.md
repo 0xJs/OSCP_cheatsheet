@@ -96,7 +96,7 @@ icalcs "<PATH>"
 
 #### Check current privileges
 ```
-whoami /priv; whoami /groups
+whoami /priv & whoami /groups
 ```
 if SeImpersonatePrivilege is set (https://github.com/itm4n/PrintSpoofer or juicypotato)
 
