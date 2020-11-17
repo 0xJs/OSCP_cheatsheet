@@ -147,6 +147,7 @@ payload = (
 3. Run the following in Immunity Debugger
 ```
 !mona bytearray -b "\x00"
+!mona bytearray -b "\x00\x01"
 ```
 4. Run the modified exploit.py script again. Make a note of the address to which the ESP register points and use it in the following Mona command:
 
