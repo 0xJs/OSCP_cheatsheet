@@ -230,3 +230,5 @@ padding = "\x90" * 16
 ```
 
 4. Start a listener and run exploit.py
+
+5. Now recreate a payload for the target in the lab/exam and run it!
