@@ -122,7 +122,7 @@ except:
 
 #### Find bad characters
 1. Get a list of bad characters from https://bulbsecurity.com/finding-bad-characters-with-immunity-debugger-and-mona-py/ or https://github.com/cytopia/badchars
-2. Edit the exploit.py script and change the payload to send the bad characters  
+2. Edit the exploit.py script and change the payload to send the bad characters (\x00 is already missing, but \x0a and \x0d are populair bad characters to. Probably should remove them aswell!)
 ```
 payload = (
   "\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10"
