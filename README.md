@@ -37,6 +37,13 @@ ssh <USER>@<TARGET> -oKexAlgorithms=+diffie-hellman-group1-sha1
 #### RDP commands
 ```
 xfreerdp /d:<DOMAIN> /u:<USERNAME> /v:<TARGET IP> +clipboard
+rdesktop -d <DOMAIN> -u <USERNAME> -p <PASSWORD>
+```
+
+#### Autorecon
+https://github.com/DriftSec/AutoRecon-OSCP
+```
+sudo /home/user/.local/bin/autorecon -o autorecond 10.11.1.5 10.11.1.7 10.11.1.8 10.11.1.10
 ```
 
 ## CMD
