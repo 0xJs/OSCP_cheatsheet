@@ -43,7 +43,7 @@ rdesktop -d <DOMAIN> -u <USERNAME> -p <PASSWORD>
 #### Autorecon
 https://github.com/DriftSec/AutoRecon-OSCP
 ```
-sudo /home/user/.local/bin/autorecon -o autorecond 10.11.1.5 10.11.1.7 10.11.1.8 10.11.1.10
+sudo /home/user/.local/bin/autorecon -o autorecon <HOST> <HOST>
 ```
 
 ## CMD
