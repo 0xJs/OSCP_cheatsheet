@@ -3,6 +3,21 @@
 * [Tools](#Tools)
 * [Manual Enumeration](#Manual-Enumeration)
 * [Privilege escalation techniques](#Privilege-escalation-techniques)
+  * [Kernel exploits](#Kernel-exploits)
+  * [Service Exploits](#Service-Exploits)
+    * [Insecure Service Properties](#Insecure-Service-Properties)
+    * [Unqouted Service Path](#Unqouted-Service-Path)
+    * [Weak registry permissions](#Weak-registry-permissions)
+    * [Insecure Service Executables](#Insecure-Service-Executables)
+    * [DLL Hijacking](#DLL-Hijacking)
+  * [Registery](#Registery)
+  * [Passwords](#Passwords)
+  * [Scheduled tasks](#Scheduled-tasks)
+  * [Insecure GUI Apps](#Insecure-GUI-Apps)
+  * [Startup apps](#Startup-apps)
+  * [Installed applications](#Installed-applications)
+  * [Hot potato](#Hot-potato)
+  * [Token impersonation](#Token-impersonation)
 
 ## General tips
 - https://lolbas-project.github.io/
@@ -219,7 +234,7 @@ sc.exe config >NAME> <OPTION>= <VALUE>
 net start/stop <SERVICE NAME>
 ```
 
-### Service Exploits - Insecure Service Properties
+### Insecure Service Properties
 Each service has an ACL which defines certain service-specific permissions. Some permissions are innocuous (e.g. SERVICE_QUERY_CONFIG, SERVICE_QUERY_STATUS). Some may be useful (e.g. SERVICE_STOP, SERVICE_START). Some are dangerous (e.g. SERVICE_CHANGE_CONFIG, SERVICE_ALL_ACCESS).
 
 If our user has permission to change the configuration of a service which runs with SYSTEM privileges, we can change the executable the service uses to one of our own. Potential Rabbit Hole: If you can change a service configuration but cannot stop/start the service, you may not be able to escalate privileges!
