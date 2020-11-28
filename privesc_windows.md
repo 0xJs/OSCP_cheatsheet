@@ -226,7 +226,7 @@ sc.exe query <SERVICE NAME>
 
 #### Modify a configuration option of a service:
 ```
-sc.exe config >NAME> <OPTION>= <VALUE>
+sc.exe config <NAME> <OPTION>= <VALUE>
 ```
 
 #### Start/Stop a service:
