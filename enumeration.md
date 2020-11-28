@@ -129,6 +129,7 @@ dirb <URL> /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -o 
 
 #### Gobuster parameters
 - use the ```-b``` flag to blacklist status codes.
+- Use the ```-x``` flag to add file extensions.
 
 #### Gobuster Quick scan
 ```
@@ -223,7 +224,6 @@ smbmap -H <IP> -p 445 -u ''
 ```
 nbtscan <IP>
 ```
-
 
 ### Shares RPC
 #### Nmap enumerate RPC shares
