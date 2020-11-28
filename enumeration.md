@@ -7,6 +7,8 @@
      * [SMB](#SMB)
      * [RPC](#RPC)
 * [Web-applications](#Web-applications)
+     * [Vulnerability Scanning](#Vulnerability-scanning)
+     * [Directory fuzzing](#Directory-fuzzing)
 
 ## Host Discovery
 #### NMAP ping sweep
