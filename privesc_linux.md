@@ -3,6 +3,18 @@
 * [Tools](#Tools)
 * [Manual Enumeration](#Manual-Enumeration)
 * [Privilege escalation techniques](#Privilege-escalation-techniques)
+   * [Kernel exploits](#Kernel-exploits)
+   * [Service exploits](#Service-exploits)
+   * [Weak file permissions](#Weak-file-permissions)
+   * [Sudo](#Sudo)
+   * [Cronjobs](#Cronjobs)
+   * [Wildcards](#Wildcards)
+   * [SUID / SGID](#SUID-/-SGID)
+   * [Passwords & Keys](#Passwords-&-Keys)
+   * [Root squashing](#Root-squashing)
+* [Tips and tricks](#Tips-and-tricks)
+
+
 
 
 ## General tips
