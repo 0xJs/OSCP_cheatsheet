@@ -172,7 +172,8 @@ eb.html
 echo "</BODY></HTML>" >> web.html
 ```
 
-### Vulnerability scanning - Nikto
+### Vulnerability scanning
+#### Nikto
 Nikto is used for vulnerability scanning a web application.
 ```
 nikto -host <URL> -output nikto-URL.txt
