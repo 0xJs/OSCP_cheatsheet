@@ -102,7 +102,8 @@ sudo python3 smbver.py <IP> <PORT>
 
 #### Nmap enumerate SMB shares
 ```
-nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
+nmap -p 139,445 --script=smb-enum-shares.nse,smb-enum-users.nse <IP>
+nmap -p 139,445 --script=/usr/share/nmap/scripts/smb* <IP>
 ```
 
 #### Enum4linux
